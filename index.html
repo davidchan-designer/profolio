@@ -344,23 +344,43 @@
         }
         
         /* Video Player Styles */
-        .video-overlay {
+        .video-container {
+            background-color: black;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            /* Removed fixed padding-bottom, handled via inline style for flexibility */
+        }
+        
+        .video-cover {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: opacity 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.3);
+        }
+        
+        .video-cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
             transition: background 0.3s;
-            cursor: pointer;
-            z-index: 10;
         }
-        .video-overlay:hover {
-            background: rgba(0,0,0,0.1);
+        
+        .video-cover:hover::before {
+            background: rgba(0,0,0,0.2);
         }
+
         .play-btn {
             width: 80px;
             height: 80px;
@@ -372,12 +392,16 @@
             justify-content: center;
             transition: transform 0.3s, background 0.3s;
             border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 2;
         }
-        .video-overlay:hover .play-btn {
+        
+        .video-cover:hover .play-btn {
             transform: scale(1.1);
             background: rgba(251, 191, 36, 0.8); /* Yellow */
             border-color: transparent;
         }
+        
         .play-btn svg {
             width: 32px;
             height: 32px;
@@ -612,7 +636,6 @@
                 <!-- Branding Category (Content #2, Background #2) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('branding')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <!-- Using Artboard-2 (Previously Motion's image) -->
                     <img src="https://i.postimg.cc/K1BBW62d/Artboard-2.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
                         <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 02</span>
@@ -628,7 +651,6 @@
                 <!-- Motion Category (Content #3, Background #3) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('motion')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <!-- Using Artboard-3 (Previously UI/UX's image) -->
                     <img src="https://i.postimg.cc/7500RF4D/Artboard-3.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
                         <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 03</span>
@@ -644,7 +666,6 @@
                 <!-- UI/UX Category (Content #4, Background #4) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('uiux')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <!-- Using Artboard-4 (Previously Graphic's image) -->
                     <img src="https://i.postimg.cc/ZWppQGSG/Artboard-4.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
                         <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 04</span>
@@ -660,7 +681,6 @@
                  <!-- Graphic Category (Content #5, Background #5) -->
                  <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('graphic')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <!-- Using Artboard-5 (Previously Videography's image) -->
                     <img src="https://i.postimg.cc/MnVVLCww/Artboard-5.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
                         <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 05</span>
@@ -676,7 +696,6 @@
                 <!-- Videography Category (Content #6, Background #6) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('video')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <!-- Using Artboard-6 (Previously AI's image) -->
                     <img src="https://i.postimg.cc/VSwnPKsc/Artboard-6.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
                         <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 06</span>
@@ -826,45 +845,111 @@
     </section>
 
     <script>
-        // --- Video Handling Logic ---
-        function handleVideoPlay(container) {
-            const video = container.querySelector('video');
-            const overlay = container.querySelector('.video-overlay');
+        // --- Central Video Management Logic ---
+        function createPlayerWrapper(item, isGrid = false) {
+            // Unique ID for this player instance to help with state management
+            const uniqueId = 'player-' + Math.random().toString(36).substr(2, 9);
             
-            // Pause all other videos
-            document.querySelectorAll('video').forEach(v => {
-                if (v !== video) {
-                    v.pause();
-                    // Optionally reset overlays for others if you want strict UI state
-                    const otherOverlay = v.parentElement.querySelector('.video-overlay');
-                    if(otherOverlay) {
-                        otherOverlay.style.opacity = '1';
-                        otherOverlay.style.pointerEvents = 'auto';
-                        v.controls = false;
-                    }
+            let poster = item.poster || item.img || ''; // Fallback for poster
+            let type = item.type;
+            let videoId = item.id || item.src;
+            let caption = item.caption;
+            let isPost = item.isPost || false;
+
+            // Aspect ratio logic using modern CSS
+            // Standard 16:9 for normal video, 9:16 for grid items/reels
+            let ratioClass = isGrid || type === 'grid-video' ? 'aspect-[9/16]' : 'aspect-video';
+            
+            // Generate YouTube Thumbnail if not provided
+            if (type === 'youtube' && !poster) {
+                poster = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            }
+            
+            // HTML Structure
+            return `
+                <div class="video-container group w-full relative bg-black rounded-xl overflow-hidden ${ratioClass}" id="${uniqueId}">
+                    <!-- Cover Layer -->
+                    <div class="video-cover absolute inset-0 w-full h-full bg-cover bg-center z-20 flex items-center justify-center cursor-pointer transition-opacity duration-300" 
+                         style="background-image: url('${poster}');" 
+                         onclick="activatePlayer('${uniqueId}', '${type}', '${videoId}', ${isPost})">
+                        <div class="play-btn w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 transition-transform duration-300 group-hover:scale-110 group-hover:bg-yellow-400/80 group-hover:border-transparent">
+                            <svg class="w-8 h-8 fill-white ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300 -z-10"></div>
+                    </div>
+                    
+                    <!-- Player Target (Empty initially) -->
+                    <div class="player-content absolute inset-0 w-full h-full bg-black"></div>
+                    
+                    <!-- Caption -->
+                    ${caption ? `<p class="absolute bottom-0 w-full text-center text-xs text-gray-400 italic pointer-events-none z-30 bg-black/60 py-2 backdrop-blur-sm border-t border-white/5">${caption}</p>` : ''}
+                </div>
+            `;
+        }
+
+        function activatePlayer(containerId, type, videoId, isPost) {
+            // 1. Reset ALL other players
+            document.querySelectorAll('.video-container').forEach(container => {
+                if (container.id !== containerId) {
+                    // Remove iframe/video content to stop playback
+                    container.querySelector('.player-content').innerHTML = '';
+                    // Show cover again
+                    container.querySelector('.video-cover').style.opacity = '1';
+                    container.querySelector('.video-cover').style.pointerEvents = 'auto';
                 }
             });
 
-            if (video) {
-                // Attempt to play
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Playback started successfully
-                        overlay.style.opacity = '0';
-                        // Remove overlay interaction after transition
-                        setTimeout(() => overlay.style.pointerEvents = 'none', 300);
-                        video.controls = true;
-                    })
-                    .catch(error => {
-                        console.warn("Auto-play prevented or source error:", error);
-                        // Show controls so user can try manually or see error
-                        video.controls = true;
-                        overlay.style.opacity = '0';
-                        setTimeout(() => overlay.style.pointerEvents = 'none', 300);
-                    });
-                }
+            // 2. Activate Current Player
+            const container = document.getElementById(containerId);
+            const content = container.querySelector('.player-content');
+            const cover = container.querySelector('.video-cover');
+
+            // Hide cover
+            cover.style.opacity = '0';
+            cover.style.pointerEvents = 'none';
+
+            // Inject Content based on type
+            if (type === 'youtube') {
+                content.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>`;
+            } else if (type === 'instagram') {
+                const embedPath = isPost ? 'p' : 'reel';
+                content.innerHTML = `
+                    <iframe 
+                        class="w-full h-full"
+                        src="https://www.instagram.com/${embedPath}/${videoId}/embed/" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>`;
+            } else if (type === 'video') {
+                // For direct MP4s, use h-auto logic but ensure it fits container or container fits it
+                // In this uniform wrapper logic, we make video fill the aspect container
+                content.innerHTML = `
+                    <video src="${videoId}" class="w-full h-full object-cover" autoplay controls playsinline></video>
+                `;
+            } else if (type === 'facebook') {
+                 content.innerHTML = `
+                    <iframe 
+                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D293221814714542&show_text=false&t=0&autoplay=1" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:none;overflow:hidden" 
+                        scrolling="no" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" 
+                        allowFullScreen="true">
+                    </iframe>`;
             }
         }
 
@@ -877,42 +962,42 @@
                     { 
                         name: 'Midjourney', 
                         desc: 'Rapidly generate high-quality concept art to unlock infinite visual inspiration.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>' // Paintbrush
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>' 
                     },
                     { 
                         name: 'Freepik AI Suite', 
                         desc: 'Accelerate asset search and vector generation for boosted design efficiency.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>' // Search
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>' 
                     },
                     { 
                         name: 'HeyGen', 
                         desc: 'Create realistic AI avatar videos, breaking language and filming barriers.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>' // Video
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>' 
                     },
                     { 
                         name: 'Gemini', 
                         desc: 'Leverage multimodal AI for advanced reasoning and creative content generation.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>' // Sparkles/Star (Gemini style)
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>' 
                     },
                     { 
                         name: 'Canva', 
                         desc: 'Combine AI-assisted layouts to produce social media assets at lightning speed.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' // Layout Grid
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' 
                     },
                     { 
                         name: 'ComfyUI', 
                         desc: 'Node-based workflow for precise control over every pixel of the generation process.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>' // Nodes
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>' 
                     },
                     { 
                         name: 'FaceFusion3', 
                         desc: 'High-precision video face-swapping technology for creative character replacement.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>' // Swap
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>' 
                     },
                     { 
                         name: 'Stable Diffusion', 
                         desc: 'Locally deploy powerful models to achieve unlimited stylistic exploration.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>' // Chip
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>' 
                     },
                 ],
                 projects: [
@@ -921,7 +1006,7 @@
                         role: 'AI Creator',
                         client: 'Personal Project',
                         desc: 'AI-generated virtual food blogger character, exploring AI applications in food photography and character setting.',
-                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', // Updated Cover
+                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', 
                         tags: ['@hungry_ai_ryan', 'Midjourney'],
                         details: {
                             longDesc: "Your AI lab rat 🧪\nTesting tools. Breaking myths. Sharing gems.\n📍Helping you think smarter with AI",
@@ -929,19 +1014,21 @@
                             gallery: [
                                 { type: 'image', src: 'https://i.postimg.cc/PxF6y910/AI-2.png', caption: 'Food Exploration Series - Realistic AI-generated food scenes' },
                                 { type: 'image', src: 'https://i.postimg.cc/kX8mVvmx/AI-3.png', caption: 'Character Consistency - AI portrait generation maintaining consistent character features' },
-                                // Added 2x1 Vertical Video Grid
+                                // 2x1 Grid with Cover logic
                                 {
                                     type: 'grid-video',
                                     videos: [
                                         {
                                             type: 'instagram',
                                             id: 'DL9jnzco5-o',
-                                            caption: 'Reel 1'
+                                            caption: 'Reel 1',
+                                            poster: 'https://i.postimg.cc/VNgZrdv6/AI-1.png' 
                                         },
                                         {
                                             type: 'instagram',
                                             id: 'DLell1ZpQM1',
-                                            caption: 'Reel 2'
+                                            caption: 'Reel 2',
+                                            poster: 'https://i.postimg.cc/PxF6y910/AI-2.png'
                                         }
                                     ]
                                 }
@@ -952,27 +1039,28 @@
                         title: 'Catherine Lim',
                         role: 'AI Creator',
                         client: 'Personal Project',
-                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', // Updated short desc
-                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', // Updated Cover
+                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', 
+                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', 
                         tags: ['@cat_fit_lim', 'Stable Diffusion'],
                         details: {
-                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", // Updated long desc
+                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", 
                             services: ["Realistic Rendering", "Fashion AI", "Lifestyle Photography"],
                             gallery: [
-                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, // Updated Image
-                                // Added 2x1 Vertical Video Grid (Instagram Reels)
+                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, 
                                 {
                                     type: 'grid-video',
                                     videos: [
                                         {
                                             type: 'instagram',
-                                            id: 'DLpJvaUpHPP', // Updated IG Reel ID
-                                            caption: 'Fashion Reel'
+                                            id: 'DLpJvaUpHPP',
+                                            caption: 'Fashion Reel',
+                                            poster: 'https://i.postimg.cc/66HVPqMd/CL-2.png'
                                         },
                                         {
                                             type: 'instagram',
-                                            id: 'DLWvStNyE_t', // Updated IG Reel ID
-                                            caption: 'Lifestyle Reel'
+                                            id: 'DLWvStNyE_t',
+                                            caption: 'Lifestyle Reel',
+                                            poster: 'https://i.postimg.cc/50g5b2bb/CL-1.png'
                                         }
                                     ]
                                 }
@@ -997,12 +1085,14 @@
                                         {
                                             type: 'instagram',
                                             id: 'DNS9yEgyrCL', 
-                                            caption: 'FaceFusion Demo 1'
+                                            caption: 'FaceFusion Demo 1',
+                                            poster: 'https://i.postimg.cc/0Nq2H5gn/516437363-17851064073495702-7272645245680851626-n.jpg'
                                         },
                                         {
                                             type: 'instagram',
                                             id: 'DM7yV7UBnKX', 
-                                            caption: 'FaceFusion Demo 2'
+                                            caption: 'FaceFusion Demo 2',
+                                            poster: 'https://i.postimg.cc/0Nq2H5gn/516437363-17851064073495702-7272645245680851626-n.jpg'
                                         }
                                     ]
                                 }
@@ -1026,14 +1116,16 @@
                                     videos: [
                                         {
                                             type: 'instagram',
-                                            id: 'DOIvxgPkpzh', // Reel ID
-                                            caption: 'SORA Generated Video'
+                                            id: 'DOIvxgPkpzh', 
+                                            caption: 'SORA Generated Video',
+                                            poster: 'https://i.postimg.cc/d1gW8VSk/Gemini-Generated-Image-ij8cabij8cabij8c.png'
                                         },
                                         {
                                             type: 'instagram',
-                                            id: 'DOFatavkv9T', // Post ID
-                                            isPost: true, // Special flag for Post vs Reel
-                                            caption: 'Process & Concept'
+                                            id: 'DOFatavkv9T', 
+                                            isPost: true,
+                                            caption: 'Process & Concept',
+                                            poster: 'https://i.postimg.cc/wTgM9cwg/ying-mu-jie-tu-2026-01-20-xia-wu4-47-56.png'
                                         }
                                     ]
                                 }
@@ -1059,8 +1151,9 @@
                             gallery: [
                                 { 
                                     type: 'youtube', 
-                                    id: 'LuSPneV1k90', // Updated YouTube ID
-                                    caption: 'Hailstone Labs Brand Showreel' 
+                                    id: 'LuSPneV1k90', 
+                                    caption: 'Hailstone Labs Brand Showreel',
+                                    poster: 'https://i.postimg.cc/FKzmKrwf/Hailstone-Lab-Website-R3-(2)-outlined.png'
                                 },
                                 { type: 'image', src: 'https://i.postimg.cc/jjjKjHL6/David-Portfolio-2023.jpg', caption: 'Official Website Design - Showcasing "Identify, Invent, Incubate" Core Values' },
                                 { type: 'image', src: 'https://i.postimg.cc/B6t7Wqpd/HS-2.jpg', caption: 'Social Media & AMA - Online Event Promotional Visuals for Various Web3 Topics' },
@@ -1099,13 +1192,15 @@
                                 { type: 'image', src: 'https://i.postimg.cc/8CgwKRfj/CVG-2.jpg', caption: 'AI Generated Visual Identity - Brand key visuals and assets generated using AI algorithms' },
                                 { 
                                     type: 'youtube', 
-                                    id: 'PmOFx19bCjM', // Updated YouTube ID
-                                    caption: 'Convergent Brand Teaser' 
+                                    id: 'PmOFx19bCjM', 
+                                    caption: 'Convergent Brand Teaser',
+                                    poster: 'https://i.postimg.cc/fbQ52cST/CVG-1.jpg'
                                 },
                                 { 
                                     type: 'youtube', 
-                                    id: '9PDZ0hT6SI0', // Updated YouTube ID
-                                    caption: 'Platform Demo & Walkthrough' 
+                                    id: '9PDZ0hT6SI0', 
+                                    caption: 'Platform Demo & Walkthrough',
+                                    poster: 'https://i.postimg.cc/fbQ52cST/CVG-1.jpg'
                                 }
                             ]
                         }
@@ -1115,14 +1210,14 @@
                         role: 'Web Designer',
                         client: 'Napnice',
                         desc: 'Website rebranding for a bedding brand, focusing on improving user shopping flow smoothness and brand visual quality.',
-                        img: 'https://i.postimg.cc/4d0Xn6Wh/NN-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/4d0Xn6Wh/NN-1.jpg', 
                         tags: ['E-commerce', 'UX'],
                         details: {
                             longDesc: "Rebranded the e-commerce website for bedding brand Napnice. The design focused on creating a comfortable sleep atmosphere while optimizing product filtering and checkout processes.",
                             services: ["E-commerce Design", "User Flow"],
                             gallery: [
-                                { type: 'image', src: 'https://i.postimg.cc/Bb14FjzK/NN-2.jpg', caption: 'Product Page Design - Optimized layout for better conversion' }, // Updated Image
-                                { type: 'image', src: 'https://i.postimg.cc/VvbmtJht/NN-3.jpg', caption: 'Visual Identity - Consistent branding across digital touchpoints' }  // Updated Image
+                                { type: 'image', src: 'https://i.postimg.cc/Bb14FjzK/NN-2.jpg', caption: 'Product Page Design - Optimized layout for better conversion' }, 
+                                { type: 'image', src: 'https://i.postimg.cc/VvbmtJht/NN-3.jpg', caption: 'Visual Identity - Consistent branding across digital touchpoints' } 
                             ]
                         }
                     }
@@ -1145,13 +1240,15 @@
                             gallery: [
                                 { 
                                     type: 'youtube', 
-                                    id: 'KE0rG9k_qTg', // Updated Video 1
-                                    caption: 'Cross-chain Explainer Video' 
+                                    id: 'KE0rG9k_qTg', 
+                                    caption: 'Cross-chain Explainer Video',
+                                    poster: 'https://i.postimg.cc/N0rFMXdm/WB-1.jpg'
                                 },
                                 { 
                                     type: 'youtube', 
-                                    id: '-G1bgKm8OVM', // Updated to new ID
-                                    caption: 'Why lock WOM? Tutorial Animation' // Updated Caption
+                                    id: '-G1bgKm8OVM', 
+                                    caption: 'Why lock WOM? Tutorial Animation',
+                                    poster: 'https://i.postimg.cc/N0rFMXdm/WB-1.jpg'
                                 }
                             ]
                         }
@@ -1161,7 +1258,7 @@
                         role: 'Motion Designer',
                         client: 'FedEx',
                         desc: '"New Customer Center" tutorial video, using clear motion graphics to demonstrate the convenient process of online shipping services.',
-                        img: 'https://i.postimg.cc/h4YJ2kSg/FD-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/h4YJ2kSg/FD-1.jpg', 
                         tags: ['Corporate', 'Tutorial'],
                         details: {
                             longDesc: "Produced an online shipping service tutorial video for FedEx, guiding new customers through the registration and shipping process via clear UI animations.",
@@ -1169,8 +1266,9 @@
                             gallery: [
                                 { 
                                     type: 'youtube', 
-                                    id: 'QFvXL21rAA0', // Updated Video
-                                    caption: 'Online Shipping Tutorial Video' 
+                                    id: 'QFvXL21rAA0', 
+                                    caption: 'Online Shipping Tutorial Video',
+                                    poster: 'https://i.postimg.cc/h4YJ2kSg/FD-1.jpg'
                                 }
                             ]
                         }
@@ -1188,13 +1286,15 @@
                             gallery: [
                                 { 
                                     type: 'youtube', 
-                                    id: 'B_JggsVwNns', // Updated Video 1
-                                    caption: 'Insurance Claim Process - Animation 1' 
+                                    id: 'B_JggsVwNns', 
+                                    caption: 'Insurance Claim Process - Animation 1',
+                                    poster: 'https://i.postimg.cc/ZqPKZgk1/cigna-1.jpg'
                                 },
                                 { 
                                     type: 'youtube', 
-                                    id: 'a7zRCi5hWrA', // Updated Video 2
-                                    caption: 'Healthcare Explained - Animation 2' 
+                                    id: 'a7zRCi5hWrA', 
+                                    caption: 'Healthcare Explained - Animation 2',
+                                    poster: 'https://i.postimg.cc/ZqPKZgk1/cigna-1.jpg'
                                 },
                                 { 
                                     type: 'image', 
@@ -1215,7 +1315,7 @@
                         role: 'UI Designer',
                         client: 'HKSTP',
                         desc: 'Science Park App Demo Design. Covering interfaces for transportation info, food ordering, and event registration, optimizing the campus user experience.',
-                        img: 'https://i.postimg.cc/Kj78cHgf/SP-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/Kj78cHgf/SP-1.jpg', 
                         tags: ['App Design', 'Smart City'],
                         details: {
                             longDesc: "Hong Kong Science Park mobile app design concept, aiming to integrate transportation (bus schedules), food ordering, and event registration functions within the park to create a smart campus experience.",
@@ -1230,7 +1330,7 @@
                         role: 'UI Designer',
                         client: 'PPS',
                         desc: 'App Interface Optimization Demo. Redesigned payment flow and bill management dashboard to improve operational intuitiveness.',
-                        img: 'https://i.postimg.cc/1X03RjN0/PPS-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/1X03RjN0/PPS-1.jpg', 
                         tags: ['FinTech', 'Redesign'],
                         details: {
                             longDesc: "PPS app interface redesign proposal. Focused on simplifying the bill management process and designing a more modern dashboard to allow users to view expenses more intuitively.",
@@ -1282,7 +1382,7 @@
                         role: 'Graphic Designer',
                         client: 'Sable Finance',
                         desc: 'Marketing material design for a stablecoin project, including Meme Competition, Testnet promo images, and event banners.',
-                        img: 'https://i.postimg.cc/4dbDYkBk/SF-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/4dbDYkBk/SF-1.jpg', 
                         tags: ['Crypto', 'Campaign'],
                         details: {
                             longDesc: "Marketing materials designed for Sable Finance, including social media promo images, event banners, and promotional materials for the Meme Competition, aimed at increasing community participation and brand awareness.",
@@ -1297,7 +1397,7 @@
                         role: 'Graphic Designer',
                         client: 'Narwhal Finance',
                         desc: 'Designed Testnet Pass Giveaway and community event visuals to enhance community engagement.',
-                        img: 'https://i.postimg.cc/nzYyXbTN/NF-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/nzYyXbTN/NF-1.jpg', 
                         tags: ['Visual', 'Social'],
                         details: {
                             longDesc: "Community event visuals designed for Narwhal Finance, including promo images for the Testnet Pass Giveaway, attracting user participation through a strong visual style.",
@@ -1312,7 +1412,7 @@
                         role: 'Graphic Designer',
                         client: 'BOCHK',
                         desc: 'Design of key visuals, recruitment posters, and promotional materials for the Management Trainee (MT) and GBA Trainee programmes.',
-                        img: 'https://i.postimg.cc/76kvPY1W/BOC-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/76kvPY1W/BOC-1.jpg', 
                         tags: ['Recruitment', 'Print'],
                         details: {
                             longDesc: "Designed the key visual for BOCHK's annual talent recruitment programme. The design concept emphasizes 'Future' and 'Opportunity', applied to posters, leaflets, and online promotional banners.",
@@ -1327,7 +1427,7 @@
                         role: 'Graphic Designer',
                         client: 'YAS',
                         desc: 'Designed lifestyle-oriented social media graphics for micro-insurance products (e.g., Ryde, Pet, Hiking).',
-                        img: 'https://i.postimg.cc/d1mbhPnz/YAS-1.jpg', // Updated Cover
+                        img: 'https://i.postimg.cc/d1mbhPnz/YAS-1.jpg', 
                         tags: ['Social Media', 'Marketing'],
                         details: {
                             longDesc: "YAS micro-insurance social media content design. Designed relatable graphics for different life scenarios (hiking, cycling, pets) to promote the concept of on-demand insurance.",
@@ -1348,7 +1448,7 @@
                         role: 'Videographer',
                         client: 'Crypto Wesearch',
                         desc: 'Video production for Crypto Wesearch YouTube channel. Responsible for shooting and editing Desmond\'s market analysis videos.',
-                        img: 'https://i.postimg.cc/zB101vmj/0419de6fbb039926307559315e9a846198a4c93f.png', // Updated Cover
+                        img: 'https://i.postimg.cc/zB101vmj/0419de6fbb039926307559315e9a846198a4c93f.png', 
                         tags: ['YouTube', 'Editing'],
                         details: {
                             longDesc: "Content production for Crypto Wesearch YouTube channel. Responsible for shooting, lighting, and post-editing of cryptocurrency market analysis videos, ensuring information is delivered clearly and professionally.",
@@ -1356,13 +1456,15 @@
                             gallery: [
                                 { 
                                     type: 'youtube', 
-                                    id: 'iIIhLIxH0y4', // Updated Video 1
-                                    caption: 'YouTube Channel Content 1' 
+                                    id: 'iIIhLIxH0y4', 
+                                    caption: 'YouTube Channel Content 1',
+                                    poster: 'https://i.postimg.cc/zB101vmj/0419de6fbb039926307559315e9a846198a4c93f.png'
                                 },
                                 { 
                                     type: 'youtube', 
-                                    id: 'hoKzqTbEWTQ', // Added Video 2
-                                    caption: 'YouTube Channel Content 2' 
+                                    id: 'hoKzqTbEWTQ', 
+                                    caption: 'YouTube Channel Content 2',
+                                    poster: 'https://i.postimg.cc/zB101vmj/0419de6fbb039926307559315e9a846198a4c93f.png'
                                 }
                             ]
                         }
@@ -1379,13 +1481,15 @@
                             services: ["Interview Shooting", "Storytelling"],
                             gallery: [
                                 { 
-                                    type: 'youtube', 
-                                    id: 'VSSqRXdZM90', 
+                                    type: 'video', 
+                                    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', 
+                                    poster: 'https://i.postimg.cc/65CPHNd4/kmb-1.jpg', 
                                     caption: 'KMB Campaign Video 1 - Bus Fan Interview' 
                                 },
                                 { 
-                                    type: 'youtube', 
-                                    id: '1Bif5LYnpP0', 
+                                    type: 'video', 
+                                    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', 
+                                    poster: 'https://i.postimg.cc/vBpPzPT7/kmb-2.jpg', 
                                     caption: 'KMB Campaign Video 2 - Monopoly Challenge' 
                                 },
                                 { 
@@ -1511,6 +1615,11 @@
                 if (tag === '@hungry_ai_ryan') {
                     return `<a href="https://www.instagram.com/hungry_ai_ryan/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
                                 <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @hungry_ai_ryan
+                            </a>`;
+                } else if (tag === '@cat_fit_lim') {
+                    return `<a href="https://www.instagram.com/cat_fit_lim/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                                 @cat_fit_lim
                             </a>`;
                 } else if (tag === '@retard.screams') {
@@ -1535,111 +1644,13 @@
             // Gallery (Updated to handle Video and Grid Video with ROBUST aspect ratio)
             const galleryContainer = document.getElementById('projectGallery');
             galleryContainer.innerHTML = project.details.gallery.map(item => {
-                if (item.type === 'video') {
-                    // Standard Video (16:9)
-                    return `
-                        <div class="gallery-item group">
-                            <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 56.25%;">
-                                <video src="${item.src}" poster="${item.poster}" class="absolute top-0 left-0 w-full h-full object-cover" playsinline></video>
-                                <div class="video-overlay absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 group-hover:bg-black/20" onclick="handleVideoPlay(this.parentElement)">
-                                    <div class="play-btn">
-                                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-2 text-sm text-gray-500 italic">${item.caption}</p>
-                        </div>
-                    `;
-                } else if (item.type === 'youtube') {
-                    // YouTube (16:9) - Using padding-bottom hack to force ratio
-                    return `
-                        <div class="gallery-item group">
-                            <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 56.25%;">
-                                <iframe 
-                                    class="absolute top-0 left-0 w-full h-full"
-                                    src="https://www.youtube.com/embed/${item.id}?rel=0" 
-                                    title="YouTube video player" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <p class="mt-2 text-sm text-gray-500 italic">${item.caption}</p>
-                        </div>
-                    `;
-                } else if (item.type === 'facebook') {
-                    // Facebook (16:9)
-                    return `
-                        <div class="gallery-item group">
-                            <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 56.25%;">
-                                <iframe 
-                                    class="absolute top-0 left-0 w-full h-full"
-                                    src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D293221814714542&show_text=false&t=0" 
-                                    style="border:none;overflow:hidden" 
-                                    scrolling="no" 
-                                    frameborder="0" 
-                                    allowfullscreen="true" 
-                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" 
-                                    allowFullScreen="true">
-                                </iframe>
-                            </div>
-                            <p class="mt-2 text-sm text-gray-500 italic">${item.caption}</p>
-                        </div>
-                    `;
+                // Wrapper for single items
+                if (['video', 'youtube', 'facebook'].includes(item.type)) {
+                    return createPlayerWrapper(item);
                 } else if (item.type === 'grid-video') {
                     // Grid Video (Vertical 9:16)
-                    const videosHtml = item.videos.map(video => {
-                        if (video.type === 'youtube') {
-                            // YouTube Shorts Handler (Vertical)
-                            return `
-                                <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 177.78%;">
-                                    <iframe 
-                                        class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/${video.id}?rel=0" 
-                                        title="YouTube video player" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                        allowfullscreen>
-                                    </iframe>
-                                    <p class="absolute bottom-2 w-full text-center mt-2 text-sm text-gray-500 italic pointer-events-none z-10 bg-black/50 py-1 backdrop-blur-sm">${video.caption}</p>
-                                </div>
-                            `;
-                        } else if (video.type === 'instagram') {
-                            // Instagram Reels/Post Handler (Vertical)
-                            // Distinguish between Reel and Post
-                            const embedPath = video.isPost ? 'p' : 'reel';
-                            
-                            // Updated Style: Use a fixed min-height for better compatibility instead of pure padding-bottom
-                            return `
-                                <div class="relative w-full bg-black rounded-xl overflow-hidden border border-white/10" style="min-height: 550px; height: 100%;">
-                                    <iframe 
-                                        class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.instagram.com/${embedPath}/${video.id}/embed/" 
-                                        frameborder="0" 
-                                        scrolling="no" 
-                                        allowtransparency="true"
-                                        allow="encrypted-media">
-                                    </iframe>
-                                    <p class="absolute bottom-0 w-full text-center text-xs text-gray-500 italic pointer-events-none z-10 bg-black/80 py-1 backdrop-blur-sm border-t border-white/5">${video.caption}</p>
-                                </div>
-                            `;
-                        } else {
-                            // Default MP4 Handler (Vertical)
-                            return `
-                                <div class="relative w-full bg-black rounded-xl overflow-hidden cursor-pointer group" style="padding-bottom: 177.78%;" onclick="handleVideoPlay(this)">
-                                    <video src="${video.src}" poster="${video.poster}" class="absolute top-0 left-0 w-full h-full object-cover" playsinline loop></video>
-                                    <div class="video-overlay absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 group-hover:bg-black/20">
-                                        <div class="play-btn w-12 h-12 border-white/50">
-                                            <svg class="w-5 h-5 ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                        </div>
-                                    </div>
-                                    <p class="absolute bottom-2 w-full text-center mt-2 text-sm text-gray-500 italic pointer-events-none z-10">${video.caption}</p>
-                                </div>
-                            `;
-                        }
-                    }).join('');
+                    const videosHtml = item.videos.map(video => createPlayerWrapper(video, true)).join('');
                     
-                    // Fixed: Added 'grid-cols-1 md:grid-cols-2' to prevent squashing on mobile
                     return `
                         <div class="gallery-item grid grid-cols-1 md:grid-cols-2 gap-4">
                             ${videosHtml}
