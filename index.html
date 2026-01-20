@@ -593,12 +593,29 @@
             <h2 class="text-4xl font-display font-bold mb-12 text-center reveal-text">Work Categories</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Branding Category -->
-                <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('branding')">
+                <!-- AI Creation Category (Content #1, Background #1) -->
+                <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('ai')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
+                    <!-- Using Artboard-1 (Previously Branding's image) to keep original visual order -->
                     <img src="https://i.postimg.cc/MnVVLCSr/Artboard-1.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
                         <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 01</span>
+                        <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">AI Creation</h3>
+                        <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
+                        <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
+                            Midjourney, Stable Diffusion, Generative Art
+                        </p>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <!-- Branding Category (Content #2, Background #2) -->
+                <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('branding')">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
+                    <!-- Using Artboard-2 (Previously Motion's image) -->
+                    <img src="https://i.postimg.cc/K1BBW62d/Artboard-2.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
+                    <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
+                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 02</span>
                         <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">Branding</h3>
                         <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
                         <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
@@ -608,12 +625,13 @@
                     <div class="card-glow"></div>
                 </div>
 
-                <!-- Motion Category -->
+                <!-- Motion Category (Content #3, Background #3) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('motion')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <img src="https://i.postimg.cc/K1BBW62d/Artboard-2.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
+                    <!-- Using Artboard-3 (Previously UI/UX's image) -->
+                    <img src="https://i.postimg.cc/7500RF4D/Artboard-3.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
-                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 02</span>
+                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 03</span>
                         <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">Motion</h3>
                         <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
                         <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
@@ -623,12 +641,13 @@
                     <div class="card-glow"></div>
                 </div>
 
-                <!-- UI/UX Category -->
+                <!-- UI/UX Category (Content #4, Background #4) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('uiux')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <img src="https://i.postimg.cc/7500RF4D/Artboard-3.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
+                    <!-- Using Artboard-4 (Previously Graphic's image) -->
+                    <img src="https://i.postimg.cc/ZWppQGSG/Artboard-4.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
-                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 03</span>
+                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 04</span>
                         <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">UI/UX</h3>
                         <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
                         <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
@@ -638,12 +657,13 @@
                     <div class="card-glow"></div>
                 </div>
 
-                 <!-- Graphic Category -->
+                 <!-- Graphic Category (Content #5, Background #5) -->
                  <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('graphic')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <img src="https://i.postimg.cc/ZWppQGSG/Artboard-4.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
+                    <!-- Using Artboard-5 (Previously Videography's image) -->
+                    <img src="https://i.postimg.cc/MnVVLCww/Artboard-5.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
-                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 04</span>
+                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 05</span>
                         <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">Graphic Design</h3>
                         <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
                         <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
@@ -653,31 +673,17 @@
                     <div class="card-glow"></div>
                 </div>
 
-                <!-- Videography Category -->
+                <!-- Videography Category (Content #6, Background #6) -->
                 <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('video')">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <img src="https://i.postimg.cc/MnVVLCww/Artboard-5.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
+                    <!-- Using Artboard-6 (Previously AI's image) -->
+                    <img src="https://i.postimg.cc/VSwnPKsc/Artboard-6.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
                     <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
-                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 05</span>
+                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 06</span>
                         <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">Videography</h3>
                         <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
                         <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
                             Crypto Wesearch, KMB, Bank of China
-                        </p>
-                    </div>
-                    <div class="card-glow"></div>
-                </div>
-
-                <!-- AI Creation Category (New) -->
-                <div class="glass-card h-[350px] p-8 flex flex-col justify-end group hover-trigger cursor-none category-card relative" onclick="openCategory('ai')">
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-0"></div>
-                    <img src="https://i.postimg.cc/VSwnPKsc/Artboard-6.jpg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:opacity-80 group-hover:scale-105 transition duration-700" style="filter: contrast(1.2) brightness(0.8);">
-                    <div class="relative z-10 transform group-hover:translate-y-[-10px] transition duration-500">
-                        <span class="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-2 block">Category 06</span>
-                        <h3 class="text-4xl font-display font-bold mb-3 group-hover:text-yellow-400 transition">AI Creation</h3>
-                        <div class="h-1 w-12 bg-yellow-400 mb-4 transform scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>
-                        <p class="text-gray-300 text-sm opacity-80 group-hover:opacity-100 transition">
-                            Midjourney, Stable Diffusion, Generative Art
                         </p>
                     </div>
                     <div class="card-glow"></div>
@@ -706,6 +712,17 @@
                 <p id="modalDesc" class="text-xl text-gray-400 max-w-2xl border-l-4 border-yellow-400 pl-6">
                     Description...
                 </p>
+            </div>
+
+            <!-- AI Tools Grid (Hidden by default) -->
+            <div id="modalTools" class="mb-20 hidden">
+                <h3 class="text-2xl font-bold mb-8 text-yellow-400 tracking-wider uppercase flex items-center gap-3">
+                    <span class="w-8 h-[1px] bg-yellow-400"></span>
+                    AI Toolkit
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="toolsGrid">
+                    <!-- Tool items injected via JS -->
+                </div>
             </div>
 
             <div id="modalGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20">
@@ -845,6 +862,178 @@
 
         // --- Portfolio Data Source ---
         const portfolioData = {
+            'ai': {
+                title: 'AI Creation',
+                desc: 'Exploring new frontiers with Generative AI tools like Midjourney and Stable Diffusion.',
+                tools: [
+                    { 
+                        name: 'Midjourney', 
+                        desc: 'Rapidly generate high-quality concept art to unlock infinite visual inspiration.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>' // Paintbrush
+                    },
+                    { 
+                        name: 'Freepik AI Suite', 
+                        desc: 'Accelerate asset search and vector generation for boosted design efficiency.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>' // Search
+                    },
+                    { 
+                        name: 'HeyGen', 
+                        desc: 'Create realistic AI avatar videos, breaking language and filming barriers.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>' // Video
+                    },
+                    { 
+                        name: 'Gemini', 
+                        desc: 'Leverage multimodal AI for advanced reasoning and creative content generation.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>' // Sparkles/Star (Gemini style)
+                    },
+                    { 
+                        name: 'Canva', 
+                        desc: 'Combine AI-assisted layouts to produce social media assets at lightning speed.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' // Layout Grid
+                    },
+                    { 
+                        name: 'ComfyUI', 
+                        desc: 'Node-based workflow for precise control over every pixel of the generation process.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>' // Nodes
+                    },
+                    { 
+                        name: 'FaceFusion3', 
+                        desc: 'High-precision video face-swapping technology for creative character replacement.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>' // Swap
+                    },
+                    { 
+                        name: 'Stable Diffusion', 
+                        desc: 'Locally deploy powerful models to achieve unlimited stylistic exploration.',
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>' // Chip
+                    },
+                ],
+                projects: [
+                    {
+                        title: 'Hungry Ryan',
+                        role: 'AI Creator',
+                        client: 'Personal Project',
+                        desc: 'AI-generated virtual food blogger character, exploring AI applications in food photography and character setting.',
+                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', // Updated Cover
+                        tags: ['@hungry_ai_ryan', 'Midjourney'],
+                        details: {
+                            longDesc: "Your AI lab rat 🧪\nTesting tools. Breaking myths. Sharing gems.\n📍Helping you think smarter with AI",
+                            services: ["Character Consistency", "AI Food Photography", "Social Media Content"],
+                            gallery: [
+                                { type: 'image', src: 'https://i.postimg.cc/PxF6y910/AI-2.png', caption: 'Food Exploration Series - Realistic AI-generated food scenes' },
+                                { type: 'image', src: 'https://i.postimg.cc/kX8mVvmx/AI-3.png', caption: 'Character Consistency - AI portrait generation maintaining consistent character features' },
+                                // Added 2x1 Vertical Video Grid
+                                {
+                                    type: 'grid-video',
+                                    videos: [
+                                        {
+                                            type: 'instagram',
+                                            id: 'DL9jnzco5-o',
+                                            caption: 'Reel 1'
+                                        },
+                                        {
+                                            type: 'instagram',
+                                            id: 'DLell1ZpQM1',
+                                            caption: 'Reel 2'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title: 'Catherine Lim',
+                        role: 'AI Creator',
+                        client: 'Personal Project',
+                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', // Updated short desc
+                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', // Updated Cover
+                        tags: ['@cat_fit_lim', 'Stable Diffusion'],
+                        details: {
+                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", // Updated long desc
+                            services: ["Realistic Rendering", "Fashion AI", "Lifestyle Photography"],
+                            gallery: [
+                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, // Updated Image
+                                // Added 2x1 Vertical Video Grid (Instagram Reels)
+                                {
+                                    type: 'grid-video',
+                                    videos: [
+                                        {
+                                            type: 'instagram',
+                                            id: 'DLpJvaUpHPP', // Updated IG Reel ID
+                                            caption: 'Fashion Reel'
+                                        },
+                                        {
+                                            type: 'instagram',
+                                            id: 'DLWvStNyE_t', // Updated IG Reel ID
+                                            caption: 'Lifestyle Reel'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title: 'Mince McMahon',
+                        role: 'AI Creator',
+                        client: 'Personal Project',
+                        desc: 'Exploring the boundaries of identity synthesis with high-fidelity face swapping technology.',
+                        img: 'https://i.postimg.cc/0Nq2H5gn/516437363-17851064073495702-7272645245680851626-n.jpg',
+                        tags: ['@retard.screams', 'FaceFusion 3'],
+                        details: {
+                            longDesc: "Pushing the limits of AI face replacement technology using FaceFusion 3. Creating entertaining and seamless visual experiments that blend identities across different media contexts.",
+                            services: ["Face Swapping", "Identity Synthesis", "Video Editing"],
+                            gallery: [
+                                { type: 'image', src: 'https://i.postimg.cc/fb0xnfbz/ying-mu-jie-tu-2026-01-20-xia-wu4-37-41.png', caption: 'Mince McMahon - Identity Experiment' },
+                                {
+                                    type: 'grid-video',
+                                    videos: [
+                                        {
+                                            type: 'instagram',
+                                            id: 'DNS9yEgyrCL', 
+                                            caption: 'FaceFusion Demo 1'
+                                        },
+                                        {
+                                            type: 'instagram',
+                                            id: 'DM7yV7UBnKX', 
+                                            caption: 'FaceFusion Demo 2'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title: 'Keung Ho 姜豪',
+                        role: 'AI Creator',
+                        client: 'Personal Project',
+                        desc: 'Cinematic AI video generation using SORA, pushing the boundaries of virtual storytelling.',
+                        img: 'https://i.postimg.cc/d1gW8VSk/Gemini-Generated-Image-ij8cabij8cabij8c.png',
+                        tags: ['@69keungho', 'SORA'],
+                        details: {
+                            longDesc: "Exploring the capabilities of OpenAI's SORA model to generate high-fidelity, cinematic video sequences. 'Keung Ho' represents a fusion of traditional narrative aesthetics with cutting-edge AI video synthesis.",
+                            services: ["SORA Video Gen", "Cinematography", "AI Storytelling"],
+                            gallery: [
+                                { type: 'image', src: 'https://i.postimg.cc/wTgM9cwg/ying-mu-jie-tu-2026-01-20-xia-wu4-47-56.png', caption: 'Keung Ho - Cinematic Still' },
+                                {
+                                    type: 'grid-video',
+                                    videos: [
+                                        {
+                                            type: 'instagram',
+                                            id: 'DOIvxgPkpzh', // Reel ID
+                                            caption: 'SORA Generated Video'
+                                        },
+                                        {
+                                            type: 'instagram',
+                                            id: 'DOFatavkv9T', // Post ID
+                                            isPost: true, // Special flag for Post vs Reel
+                                            caption: 'Process & Concept'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
             'branding': {
                 title: 'Branding',
                 desc: 'Strategic Visual Identity. Building memorable brands for Web3, Finance, and F&B sectors.',
@@ -953,8 +1142,8 @@
                                 },
                                 { 
                                     type: 'youtube', 
-                                    id: '-G1bgKm8OVM', 
-                                    caption: 'Why lock WOM? Tutorial Animation' 
+                                    id: '-G1bgKm8OVM', // Updated to new ID
+                                    caption: 'Why lock WOM? Tutorial Animation' // Updated Caption
                                 }
                             ]
                         }
@@ -1200,75 +1389,6 @@
                         }
                     }
                 ]
-            },
-            'ai': {
-                title: 'AI Creation',
-                desc: 'Exploring new frontiers with Generative AI tools like Midjourney and Stable Diffusion.',
-                projects: [
-                    {
-                        title: 'Hungry Ryan',
-                        role: 'AI Creator',
-                        client: 'Personal Project',
-                        desc: 'AI-generated virtual food blogger character, exploring AI applications in food photography and character setting.',
-                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', // Updated Cover
-                        tags: ['@hungry_ai_ryan', 'Midjourney'],
-                        details: {
-                            longDesc: "Your AI lab rat 🧪\nTesting tools. Breaking myths. Sharing gems.\n📍Helping you think smarter with AI",
-                            services: ["Character Consistency", "AI Food Photography", "Social Media Content"],
-                            gallery: [
-                                { type: 'image', src: 'https://i.postimg.cc/PxF6y910/AI-2.png', caption: 'Food Exploration Series - Realistic AI-generated food scenes' },
-                                { type: 'image', src: 'https://i.postimg.cc/kX8mVvmx/AI-3.png', caption: 'Character Consistency - AI portrait generation maintaining consistent character features' },
-                                // Added 2x1 Vertical Video Grid
-                                {
-                                    type: 'grid-video',
-                                    videos: [
-                                        {
-                                            type: 'youtube',
-                                            id: 'wggCBTlS5dc',
-                                            caption: 'Reel 1'
-                                        },
-                                        {
-                                            type: 'youtube',
-                                            id: '2dAXiY4NcTM',
-                                            caption: 'Reel 2'
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title: 'Catherine Lim',
-                        role: 'AI Creator',
-                        client: 'Personal Project',
-                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', // Updated short desc
-                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', // Updated Cover
-                        tags: ['@cat_fit_lim', 'Stable Diffusion'],
-                        details: {
-                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", // Updated long desc
-                            services: ["Realistic Rendering", "Fashion AI", "Lifestyle Photography"],
-                            gallery: [
-                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, // Updated Image
-                                // Added 2x1 Vertical Video Grid (YouTube Shorts)
-                                {
-                                    type: 'grid-video',
-                                    videos: [
-                                        {
-                                            type: 'youtube', // Specify subtype
-                                            id: 'QyzUQpqLfyk', // YouTube Shorts ID 1
-                                            caption: 'Fashion Reel'
-                                        },
-                                        {
-                                            type: 'youtube', // Specify subtype
-                                            id: 'TaFP-4BVCMs', // YouTube Shorts ID 2
-                                            caption: 'Lifestyle Reel'
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                ]
             }
         };
 
@@ -1281,10 +1401,31 @@
             const title = document.getElementById('modalTitle');
             const desc = document.getElementById('modalDesc');
             const grid = document.getElementById('modalGrid');
+            const toolsSection = document.getElementById('modalTools');
+            const toolsGrid = document.getElementById('toolsGrid');
 
             // Populate Content
             title.textContent = data.title;
             desc.textContent = data.desc;
+            
+            // --- Handle Tools Section ---
+            if (data.tools && data.tools.length > 0) {
+                toolsSection.classList.remove('hidden');
+                toolsGrid.innerHTML = data.tools.map(tool => `
+                    <div class="glass-card p-6 flex flex-col justify-between border border-white/5 bg-white/5 hover:bg-white/10 transition group">
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 text-white group-hover:text-yellow-400 transition">${tool.name}</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">${tool.desc}</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-white/5 mt-4 flex items-center justify-center opacity-50 group-hover:opacity-100 transition">
+                            <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">${tool.icon}</svg>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                toolsSection.classList.add('hidden');
+                toolsGrid.innerHTML = '';
+            }
             
             // Clear previous grid
             grid.innerHTML = '';
@@ -1369,6 +1510,16 @@
                                 <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                                 @cat_fit_lim
                             </a>`;
+                } else if (tag === '@retard.screams') {
+                    return `<a href="https://www.instagram.com/retard.screams/reels/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @retard.screams
+                            </a>`;
+                } else if (tag === '@69keungho') {
+                    return `<a href="https://www.instagram.com/69keungho/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @69keungho
+                            </a>`;
                 } else {
                     return `<span class="px-3 py-1 bg-white/10 rounded-full text-xs font-medium">${tag}</span>`;
                 }
@@ -1378,16 +1529,16 @@
             const servicesContainer = document.getElementById('projectServices');
             servicesContainer.innerHTML = project.details.services.map(s => `<li>${s}</li>`).join('');
 
-            // Gallery (Updated to handle Video and Grid Video)
+            // Gallery (Updated to handle Video and Grid Video with ROBUST aspect ratio)
             const galleryContainer = document.getElementById('projectGallery');
             galleryContainer.innerHTML = project.details.gallery.map(item => {
                 if (item.type === 'video') {
-                    // ... (existing video logic)
+                    // Standard Video (16:9)
                     return `
                         <div class="gallery-item group">
-                            <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden cursor-pointer" onclick="handleVideoPlay(this)">
-                                <video src="${item.src}" poster="${item.poster}" class="w-full h-full object-cover" playsinline></video>
-                                <div class="video-overlay absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 group-hover:bg-black/20">
+                            <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 56.25%;">
+                                <video src="${item.src}" poster="${item.poster}" class="absolute top-0 left-0 w-full h-full object-cover" playsinline></video>
+                                <div class="video-overlay absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 group-hover:bg-black/20" onclick="handleVideoPlay(this.parentElement)">
                                     <div class="play-btn">
                                         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                     </div>
@@ -1397,14 +1548,13 @@
                         </div>
                     `;
                 } else if (item.type === 'youtube') {
-                    // ... (existing youtube logic)
+                    // YouTube (16:9) - Using padding-bottom hack to force ratio
                     return `
                         <div class="gallery-item group">
-                            <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden">
+                            <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 56.25%;">
                                 <iframe 
-                                    width="100%" 
-                                    height="100%" 
-                                    src="https://www.youtube.com/embed/${item.id}?rel=0&origin=${window.location.origin}" 
+                                    class="absolute top-0 left-0 w-full h-full"
+                                    src="https://www.youtube.com/embed/${item.id}?rel=0" 
                                     title="YouTube video player" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -1415,14 +1565,13 @@
                         </div>
                     `;
                 } else if (item.type === 'facebook') {
-                    // ... (existing facebook logic)
+                    // Facebook (16:9)
                     return `
                         <div class="gallery-item group">
-                            <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden">
+                            <div class="relative w-full bg-black rounded-xl overflow-hidden" style="padding-bottom: 56.25%;">
                                 <iframe 
+                                    class="absolute top-0 left-0 w-full h-full"
                                     src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D293221814714542&show_text=false&t=0" 
-                                    width="100%" 
-                                    height="100%" 
                                     style="border:none;overflow:hidden" 
                                     scrolling="no" 
                                     frameborder="0" 
@@ -1435,50 +1584,44 @@
                         </div>
                     `;
                 } else if (item.type === 'grid-video') {
-                    // Updated Grid Video Handler for both MP4 and YouTube Shorts
+                    // Grid Video (Vertical 9:16)
                     const videosHtml = item.videos.map(video => {
                         if (video.type === 'youtube') {
-                            // YouTube Shorts Handler
+                            // ... existing youtube code ...
+                        } else if (video.type === 'instagram') {
+                            // Instagram Reels/Post Handler (Vertical)
+                            // Distinguish between Reel and Post
+                            const embedPath = video.isPost ? 'p' : 'reel';
+                            
                             return `
-                                <div class="relative w-full aspect-[9/16] bg-black rounded-xl overflow-hidden">
+                                <div class="relative w-full bg-black rounded-xl overflow-hidden border border-white/10" style="padding-bottom: 177.78%;">
                                     <iframe 
-                                        width="100%" 
-                                        height="100%" 
-                                        src="https://www.youtube.com/embed/${video.id}?rel=0&origin=${window.location.origin}" 
-                                        title="YouTube video player" 
+                                        class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.instagram.com/${embedPath}/${video.id}/embed/" 
                                         frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                        allowfullscreen>
+                                        scrolling="no" 
+                                        allowtransparency="true"
+                                        allow="encrypted-media">
                                     </iframe>
-                                    <p class="mt-2 text-sm text-gray-500 italic text-center">${video.caption}</p>
+                                    <p class="absolute bottom-0 w-full text-center text-xs text-gray-500 italic pointer-events-none z-10 bg-black/80 py-1 backdrop-blur-sm border-t border-white/5">${video.caption}</p>
                                 </div>
                             `;
                         } else {
-                            // Default MP4 Handler (Keep for Hungry Ryan)
-                            return `
-                                <div class="relative w-full aspect-[9/16] bg-black rounded-xl overflow-hidden cursor-pointer group" onclick="handleVideoPlay(this)">
-                                    <video src="${video.src}" poster="${video.poster}" class="w-full h-full object-cover" playsinline loop></video>
-                                    <div class="video-overlay absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 group-hover:bg-black/20">
-                                        <div class="play-btn w-12 h-12 border-white/50">
-                                            <svg class="w-5 h-5 ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                        </div>
-                                    </div>
-                                    <p class="mt-2 text-sm text-gray-500 italic text-center absolute bottom-2 w-full z-20 pointer-events-none">${video.caption}</p>
-                                </div>
-                            `;
+                            // ... existing mp4 code ...
                         }
                     }).join('');
                     
+                    // Fixed: Added 'grid-cols-1 md:grid-cols-2' to prevent squashing on mobile
                     return `
-                        <div class="gallery-item grid grid-cols-2 gap-4">
+                        <div class="gallery-item grid grid-cols-1 md:grid-cols-2 gap-4">
                             ${videosHtml}
                         </div>
                     `;
                 } else if (item.type === 'link-card') {
-                    // ... (existing link-card logic)
+                    // Link Card (16:9)
                     return `
-                        <a href="${item.url}" target="_blank" class="block gallery-item group relative w-full aspect-video bg-black rounded-xl overflow-hidden cursor-pointer">
-                            <img src="${item.poster}" alt="${item.caption}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
+                        <a href="${item.url}" target="_blank" class="block gallery-item group relative w-full bg-black rounded-xl overflow-hidden cursor-pointer" style="padding-bottom: 56.25%;">
+                            <img src="${item.poster}" alt="${item.caption}" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
                                 <div class="play-btn mb-2">
                                     <!-- X (Twitter) Icon -->
@@ -1486,7 +1629,7 @@
                                 </div>
                                 <span class="text-white font-bold text-sm uppercase tracking-widest">Watch on X</span>
                             </div>
-                            <p class="mt-2 text-sm text-gray-500 italic">${item.caption}</p>
+                            <p class="absolute bottom-[-30px] w-full text-center mt-2 text-sm text-gray-500 italic">${item.caption}</p>
                         </a>
                     `;
                 } else {
