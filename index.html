@@ -860,7 +860,7 @@
                         <blockquote class="instagram-media" 
                             data-instgrm-permalink="${embedUrl}" 
                             data-instgrm-version="14" 
-                            style="background:#FFF; border:0; border-radius:3px; box-shadow:none; margin: 0; height: 0; max-width: auto !important; min-width: 326px; padding: 0; width: 100%;">
+                            style="background:#FFF; border:0; border-radius:3px; box-shadow:none; margin: 0; height: 0; max-width: none !important; min-width: 326px; padding: 0; width: 100%;">
                         </blockquote>
                     </div>
                 `;
@@ -1517,6 +1517,104 @@
 
             // Open Modal
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCategory() {
+            const modal = document.getElementById('categoryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- Project Detail Logic (New Level) ---
+        function openProjectDetail(category, index) {
+            const project = portfolioData[category].projects[index];
+            const modal = document.getElementById('projectDetailModal');
+            
+            // Populate Data
+            document.getElementById('projectTitle').textContent = project.title;
+            document.getElementById('projectLongDesc').textContent = project.details.longDesc;
+            document.getElementById('projectRole').textContent = project.role;
+            document.getElementById('projectClient').textContent = project.client;
+            
+            // Hero Image
+            const heroImg = document.querySelector('#projectHero img');
+            heroImg.src = project.img;
+
+            // Tags (Updated logic for IG links)
+            const tagsContainer = document.getElementById('projectTags');
+            tagsContainer.innerHTML = project.tags.map(tag => {
+                if (tag === '@hungry_ai_ryan') {
+                    return `<a href="https://www.instagram.com/hungry_ai_ryan/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @hungry_ai_ryan
+                            </a>`;
+                } else if (tag === '@cat_fit_lim') {
+                    return `<a href="https://www.instagram.com/cat_fit_lim/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @cat_fit_lim
+                            </a>`;
+                } else if (tag === '@retard.screams') {
+                    return `<a href="https://www.instagram.com/retard.screams/reels/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @retard.screams
+                            </a>`;
+                } else if (tag === '@69keungho') {
+                    return `<a href="https://www.instagram.com/69keungho/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
+                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @69keungho
+                            </a>`;
+                } else {
+                    return `<span class="px-3 py-1 bg-white/10 rounded-full text-xs font-medium">${tag}</span>`;
+                }
+            }).join('');
+
+            // Services
+            const servicesContainer = document.getElementById('projectServices');
+            servicesContainer.innerHTML = project.details.services.map(s => `<li>${s}</li>`).join('');
+
+            // Gallery (Updated to handle Video and Grid Video with ROBUST aspect ratio)
+            const galleryContainer = document.getElementById('projectGallery');
+            galleryContainer.innerHTML = project.details.gallery.map(item => {
+                // Wrapper for single items
+                if (['video', 'youtube', 'facebook'].includes(item.type)) {
+                    return createPlayerHtml(item);
+                } else if (item.type === 'grid-video') {
+                    // Grid Video (Vertical 9:16)
+                    const videosHtml = item.videos.map(video => createPlayerHtml(video, true)).join('');
+                    
+                    return `
+                        <div class="gallery-item grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${videosHtml}
+                        </div>
+                    `;
+                } else if (item.type === 'link-card') {
+                    // Link Card (16:9)
+                    return `
+                        <a href="${item.url}" target="_blank" class="block gallery-item group relative w-full bg-black rounded-xl overflow-hidden cursor-pointer" style="padding-bottom: 56.25%;">
+                            <img src="${item.poster}" alt="${item.caption}" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+                                <div class="play-btn mb-2">
+                                    <!-- X (Twitter) Icon -->
+                                    <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </div>
+                                <span class="text-white font-bold text-sm uppercase tracking-widest">Watch on X</span>
+                            </div>
+                            <p class="absolute bottom-[-30px] w-full text-center mt-2 text-sm text-gray-500 italic">${item.caption}</p>
+                        </a>
+                    `;
+                } else {
+                    return `
+                        <div class="gallery-item">
+                            <img src="${item.src}" alt="${item.caption}">
+                            <p class="mt-2 text-sm text-gray-500 italic">${item.caption}</p>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            // Show Modal
+            modal.classList.add('active');
             
             // CRITICAL: Trigger Instagram Embed Process after content injection
             if (window.instgrm) {
@@ -1528,7 +1626,7 @@
             const modal = document.getElementById('projectDetailModal');
             modal.classList.remove('active');
             
-            // CRITICAL FIX: Clear innerHTML to FORCE stop all videos (Youtube, IG, MP4)
+            // Clear innerHTML to FORCE stop all videos
             const gallery = document.getElementById('projectGallery');
             if (gallery) {
                 gallery.innerHTML = '';
