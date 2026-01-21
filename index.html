@@ -829,14 +829,22 @@
             let isPost = item.isPost || false;
             let poster = item.poster || item.img || '';
 
+            // Explicit orientation (Added based on user request)
+            let isPortrait = item.orientation === 'portrait';
+            // Determine aspect ratio class
+            let ratioClass = 'aspect-video'; // Default landscape (16:9)
+            if (isPortrait) {
+                ratioClass = 'aspect-[9/16]'; // Portrait (9:16)
+            } else if (isGrid) {
+                ratioClass = 'aspect-[9/16]'; // Grid default
+            }
+
             let content = '';
             let containerClass = "w-full relative rounded-xl overflow-hidden bg-black";
             let containerStyle = "";
 
             if (type === 'youtube') {
-                // YouTube: Force 16:9 ratio unless inside a vertical grid (then 9:16)
-                let ratio = isGrid ? 'aspect-[9/16]' : 'aspect-video';
-                containerClass += ` ${ratio}`;
+                containerClass += ` ${ratioClass}`;
                 content = `
                     <iframe 
                         class="w-full h-full absolute top-0 left-0"
@@ -848,7 +856,6 @@
                     </iframe>`;
             } else if (type === 'instagram') {
                 // Instagram: Allow auto height (no fixed aspect ratio class)
-                // Use background transparent to blend better
                 containerClass = "w-full relative rounded-xl overflow-hidden bg-transparent"; 
                 const embedUrl = isPost 
                     ? `https://www.instagram.com/p/${videoId}/` 
@@ -866,9 +873,7 @@
                 `;
             } else if (type === 'video') {
                 // MP4 Video
-                // Use aspect ratio depending on context
-                let ratio = (isGrid || type === 'grid-video') ? 'aspect-[9/16]' : 'aspect-video';
-                containerClass += ` ${ratio}`;
+                containerClass += ` ${ratioClass}`;
                 
                 content = `
                     <video 
@@ -913,42 +918,42 @@
                     { 
                         name: 'Midjourney', 
                         desc: 'Rapidly generate high-quality concept art to unlock infinite visual inspiration.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>' // Paintbrush
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>'
                     },
                     { 
                         name: 'Freepik AI Suite', 
                         desc: 'Accelerate asset search and vector generation for boosted design efficiency.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>' // Search
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>'
                     },
                     { 
                         name: 'HeyGen', 
                         desc: 'Create realistic AI avatar videos, breaking language and filming barriers.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>' // Video
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>'
                     },
                     { 
                         name: 'Gemini', 
                         desc: 'Leverage multimodal AI for advanced reasoning and creative content generation.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>' // Sparkles/Star (Gemini style)
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>'
                     },
                     { 
                         name: 'Canva', 
                         desc: 'Combine AI-assisted layouts to produce social media assets at lightning speed.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' // Layout Grid
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>'
                     },
                     { 
                         name: 'ComfyUI', 
                         desc: 'Node-based workflow for precise control over every pixel of the generation process.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>' // Nodes
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>'
                     },
                     { 
                         name: 'FaceFusion3', 
                         desc: 'High-precision video face-swapping technology for creative character replacement.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>' // Swap
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>'
                     },
                     { 
                         name: 'Stable Diffusion', 
                         desc: 'Locally deploy powerful models to achieve unlimited stylistic exploration.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>' // Chip
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>'
                     },
                 ],
                 projects: [
@@ -957,7 +962,7 @@
                         role: 'AI Creator',
                         client: 'Personal Project',
                         desc: 'AI-generated virtual food blogger character, exploring AI applications in food photography and character setting.',
-                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', // Updated Cover
+                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', 
                         tags: ['@hungry_ai_ryan', 'Midjourney'],
                         details: {
                             longDesc: "Your AI lab rat 🧪\nTesting tools. Breaking myths. Sharing gems.\n📍Helping you think smarter with AI",
@@ -972,12 +977,14 @@
                                         {
                                             type: 'youtube',
                                             id: '2dAXiY4NcTM',
-                                            caption: 'Reel 1'
+                                            caption: 'Reel 1',
+                                            orientation: 'portrait'
                                         },
                                         {
                                             type: 'youtube',
                                             id: 'wggCBTlS5dc',
-                                            caption: 'Reel 2'
+                                            caption: 'Reel 2',
+                                            orientation: 'portrait'
                                         }
                                     ]
                                 }
@@ -988,27 +995,29 @@
                         title: 'Catherine Lim',
                         role: 'AI Creator',
                         client: 'Personal Project',
-                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', // Updated short desc
-                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', // Updated Cover
+                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', 
+                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', 
                         tags: ['@cat_fit_lim', 'Stable Diffusion'],
                         details: {
-                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", // Updated long desc
+                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", 
                             services: ["Realistic Rendering", "Fashion AI", "Lifestyle Photography"],
                             gallery: [
-                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, // Updated Image
+                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, 
                                 // Added 2x1 Vertical Video Grid (Instagram Reels)
                                 {
                                     type: 'grid-video',
                                     videos: [
                                         {
-                                            type: 'youtube', // Specify subtype
-                                            id: 'TaFP-4BVCMs', // YouTube Shorts ID 1
-                                            caption: 'Fashion Reel'
+                                            type: 'youtube', 
+                                            id: 'TaFP-4BVCMs', 
+                                            caption: 'Fashion Reel',
+                                            orientation: 'portrait'
                                         },
                                         {
-                                            type: 'youtube', // Specify subtype
-                                            id: 'QyzUQpqLfyk', // YouTube Shorts ID 2
-                                            caption: 'Lifestyle Reel'
+                                            type: 'youtube', 
+                                            id: 'QyzUQpqLfyk', 
+                                            caption: 'Lifestyle Reel',
+                                            orientation: 'portrait'
                                         }
                                     ]
                                 }
@@ -1033,12 +1042,14 @@
                                         {
                                             type: 'youtube',
                                             id: 'rqwyVN0JJ6o', 
-                                            caption: 'FaceFusion Demo 1'
+                                            caption: 'FaceFusion Demo 1',
+                                            orientation: 'portrait'
                                         },
                                         {
                                             type: 'youtube',
                                             id: 'nj7Uf60rq1I', 
-                                            caption: 'FaceFusion Demo 2'
+                                            caption: 'FaceFusion Demo 2',
+                                            orientation: 'portrait'
                                         }
                                     ]
                                 }
@@ -1063,7 +1074,8 @@
                                         {
                                             type: 'youtube',
                                             id: 'YBrY2nmXQVQ', // Reel ID
-                                            caption: 'SORA Generated Video'
+                                            caption: 'SORA Generated Video',
+                                            orientation: 'portrait'
                                         },
                                         {
                                             type: 'instagram',
@@ -1096,7 +1108,8 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'LuSPneV1k90', // Updated YouTube ID
-                                    caption: 'Hailstone Labs Brand Showreel' 
+                                    caption: 'Hailstone Labs Brand Showreel',
+                                    orientation: 'landscape'
                                 },
                                 { type: 'image', src: 'https://i.postimg.cc/jjjKjHL6/David-Portfolio-2023.jpg', caption: 'Official Website Design - Showcasing "Identify, Invent, Incubate" Core Values' },
                                 { type: 'image', src: 'https://i.postimg.cc/B6t7Wqpd/HS-2.jpg', caption: 'Social Media & AMA - Online Event Promotional Visuals for Various Web3 Topics' },
@@ -1136,12 +1149,14 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'PmOFx19bCjM', // Updated YouTube ID
-                                    caption: 'Convergent Brand Teaser' 
+                                    caption: 'Convergent Brand Teaser',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: '9PDZ0hT6SI0', // Updated YouTube ID
-                                    caption: 'Platform Demo & Walkthrough' 
+                                    caption: 'Platform Demo & Walkthrough',
+                                    orientation: 'landscape' 
                                 }
                             ]
                         }
@@ -1182,12 +1197,14 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'KE0rG9k_qTg', // Updated Video 1
-                                    caption: 'Cross-chain Explainer Video' 
+                                    caption: 'Cross-chain Explainer Video',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: '-G1bgKm8OVM', // Updated to new ID
-                                    caption: 'Why lock WOM? Tutorial Animation' // Updated Caption
+                                    caption: 'Why lock WOM? Tutorial Animation', // Updated Caption
+                                    orientation: 'landscape' 
                                 }
                             ]
                         }
@@ -1206,7 +1223,8 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'QFvXL21rAA0', // Updated Video
-                                    caption: 'Online Shipping Tutorial Video' 
+                                    caption: 'Online Shipping Tutorial Video',
+                                    orientation: 'landscape' 
                                 }
                             ]
                         }
@@ -1225,12 +1243,14 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'B_JggsVwNns', // Updated Video 1
-                                    caption: 'Insurance Claim Process - Animation 1' 
+                                    caption: 'Insurance Claim Process - Animation 1',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: 'a7zRCi5hWrA', // Updated Video 2
-                                    caption: 'Healthcare Explained - Animation 2' 
+                                    caption: 'Healthcare Explained - Animation 2',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'image', 
@@ -1393,12 +1413,14 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'iIIhLIxH0y4', // Updated Video 1
-                                    caption: 'YouTube Channel Content 1' 
+                                    caption: 'YouTube Channel Content 1',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: 'hoKzqTbEWTQ', // Added Video 2
-                                    caption: 'YouTube Channel Content 2' 
+                                    caption: 'YouTube Channel Content 2',
+                                    orientation: 'landscape' 
                                 }
                             ]
                         }
@@ -1417,12 +1439,14 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'VSSqRXdZM90', 
-                                    caption: 'KMB Campaign Video 1 - Bus Fan Interview' 
+                                    caption: 'KMB Campaign Video 1 - Bus Fan Interview',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: '1Bif5LYnpP0', 
-                                    caption: 'KMB Campaign Video 2 - Monopoly Challenge' 
+                                    caption: 'KMB Campaign Video 2 - Monopoly Challenge',
+                                    orientation: 'landscape' 
                                 },
                                 { 
                                     type: 'image', 
@@ -1577,7 +1601,7 @@
             const galleryContainer = document.getElementById('projectGallery');
             galleryContainer.innerHTML = project.details.gallery.map(item => {
                 // Wrapper for single items
-                if (['video', 'youtube', 'facebook'].includes(item.type)) {
+                if (['video', 'youtube', 'facebook', 'instagram'].includes(item.type)) {
                     return createPlayerHtml(item);
                 } else if (item.type === 'grid-video') {
                     // Grid Video (Vertical 9:16)
