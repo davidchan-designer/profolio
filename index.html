@@ -305,8 +305,6 @@
             left: 2rem;
             z-index: 310;
             cursor: none;
-            /* Remove mix-blend-mode to keep color consistent */
-            /* mix-blend-mode: difference; */ 
         }
         
         .back-btn .border {
@@ -350,37 +348,8 @@
             overflow: hidden;
             position: relative;
             width: 100%;
-            /* Height is handled by aspect-ratio classes */
         }
         
-        .video-cover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-            z-index: 20;
-            transition: opacity 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .video-cover::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            transition: background 0.3s;
-        }
-        
-        .video-cover:hover::before {
-            background: rgba(0,0,0,0.2);
-        }
-
         .play-btn {
             width: 80px;
             height: 80px;
@@ -394,12 +363,6 @@
             border: 1px solid rgba(255,255,255,0.3);
             position: relative;
             z-index: 2;
-        }
-        
-        .video-cover:hover .play-btn {
-            transform: scale(1.1);
-            background: rgba(251, 191, 36, 0.8); /* Yellow */
-            border-color: transparent;
         }
         
         .play-btn svg {
@@ -831,12 +794,6 @@
                     <!-- WhatsApp Icon (Updated to white) -->
                     <svg class="w-5 h-5 fill-current text-white group-hover:text-yellow-400 transition" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                     
-                    <!-- Divider -->
-                    <span class="w-px h-4 bg-white/20"></span>
-                    
-                    <!-- Phone Icon -->
-                    <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    
                     +852 67483607
                 </a>
             </div>
@@ -854,123 +811,80 @@
     <script async src="//www.instagram.com/embed.js"></script>
 
     <script>
-        // --- Central Video Management Logic ---
-        function createPlayerWrapper(item, isGrid = false) {
-            // Unique ID for this player instance to help with state management
-            const uniqueId = 'player-' + Math.random().toString(36).substr(2, 9);
-            
-            let poster = item.poster || item.img || ''; // Fallback for poster
+        // --- Video Handling Logic (For native MP4s only) ---
+        function handleVideoPlay(video) {
+            // Pause all other native videos
+            document.querySelectorAll('video').forEach(v => {
+                if (v !== video) {
+                    v.pause();
+                }
+            });
+        }
+
+        // --- Central Video Element Generator ---
+        function createPlayerHtml(item, isGrid = false) {
             let type = item.type;
             let videoId = item.id || item.src;
             let caption = item.caption;
             let isPost = item.isPost || false;
+            let poster = item.poster || item.img || '';
 
-            // Aspect ratio logic using modern CSS
-            // Standard 16:9 for normal video, 9:16 for grid items/reels
-            // Note: We need to be able to remove this class later for IG expansion.
-            let ratioClass = isGrid || type === 'grid-video' ? 'aspect-[9/16]' : 'aspect-video';
-            
-            // Generate YouTube Thumbnail if not provided
-            if (type === 'youtube' && !poster) {
-                poster = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-            }
-            
-            // HTML Structure
-            return `
-                <div class="video-container group w-full relative bg-black rounded-xl overflow-hidden ${ratioClass}" id="${uniqueId}" data-ratio-class="${ratioClass}">
-                    <!-- Cover Layer -->
-                    <div class="video-cover absolute inset-0 w-full h-full bg-cover bg-center z-20 flex items-center justify-center cursor-pointer transition-opacity duration-300" 
-                         style="background-image: url('${poster}');" 
-                         onclick="activatePlayer('${uniqueId}', '${type}', '${videoId}', ${isPost})">
-                        <div class="play-btn w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 transition-transform duration-300 group-hover:scale-110 group-hover:bg-yellow-400/80 group-hover:border-transparent">
-                            <svg class="w-8 h-8 fill-white ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300 -z-10"></div>
-                    </div>
-                    
-                    <!-- Player Target (Empty initially) -->
-                    <div class="player-content w-full h-full bg-black"></div>
-                    
-                    <!-- Caption -->
-                    ${caption ? `<p class="caption-text absolute bottom-0 w-full text-center text-xs text-gray-400 italic pointer-events-none z-30 bg-black/60 py-2 backdrop-blur-sm border-t border-white/5">${caption}</p>` : ''}
-                </div>
-            `;
-        }
+            let content = '';
+            let containerClass = "w-full relative rounded-xl overflow-hidden bg-black";
+            let containerStyle = "";
 
-        function activatePlayer(containerId, type, videoId, isPost) {
-            // 1. Reset ALL other players
-            document.querySelectorAll('.video-container').forEach(container => {
-                if (container.id !== containerId) {
-                    const content = container.querySelector('.player-content');
-                    if (content.innerHTML !== '') {
-                        // Reset content
-                        content.innerHTML = '';
-                        // Restore Cover
-                        const cover = container.querySelector('.video-cover');
-                        cover.style.opacity = '1';
-                        cover.style.pointerEvents = 'auto';
-                        
-                        // Restore Aspect Ratio
-                        const ratioClass = container.getAttribute('data-ratio-class');
-                        if (ratioClass) {
-                            container.classList.add(ratioClass);
-                            container.style.height = ''; // Remove auto height
-                        }
-                    }
-                }
-            });
-
-            // 2. Activate Current Player
-            const container = document.getElementById(containerId);
-            const content = container.querySelector('.player-content');
-            const cover = container.querySelector('.video-cover');
-            const captionText = container.querySelector('.caption-text');
-
-            // Hide cover
-            cover.style.opacity = '0';
-            cover.style.pointerEvents = 'none';
-
-            // Inject Content based on type
             if (type === 'youtube') {
-                content.innerHTML = `
+                // YouTube: Force 16:9 ratio unless inside a vertical grid (then 9:16)
+                let ratio = isGrid ? 'aspect-[9/16]' : 'aspect-video';
+                containerClass += ` ${ratio}`;
+                content = `
                     <iframe 
-                        width="100%" 
-                        height="100%" 
-                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                        class="w-full h-full absolute top-0 left-0"
+                        src="https://www.youtube.com/embed/${videoId}?rel=0" 
                         title="YouTube video player" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>`;
             } else if (type === 'instagram') {
-                // Remove fixed aspect ratio to allow IG embed to expand
-                const ratioClass = container.getAttribute('data-ratio-class');
-                if (ratioClass) container.classList.remove(ratioClass);
-                container.style.height = 'auto'; // Allow growth
-                
+                // Instagram: Allow auto height (no fixed aspect ratio class)
+                // Use background transparent to blend better
+                containerClass = "w-full relative rounded-xl overflow-hidden bg-transparent"; 
                 const embedUrl = isPost 
                     ? `https://www.instagram.com/p/${videoId}/` 
                     : `https://www.instagram.com/reel/${videoId}/`;
                 
-                content.innerHTML = `
-                    <blockquote class="instagram-media" data-instgrm-permalink="${embedUrl}" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:none; margin: 0; height:0 ; max-width: auto !important">
-                    </blockquote>
+                // Using standard IG Blockquote for auto-height
+                content = `
+                    <div class="flex justify-center w-full">
+                        <blockquote class="instagram-media" 
+                            data-instgrm-permalink="${embedUrl}" 
+                            data-instgrm-version="14" 
+                            style="background:#FFF; border:0; border-radius:3px; box-shadow:none; margin: 0; height: 0; max-width: auto !important; min-width: 326px; padding: 0; width: 100%;">
+                        </blockquote>
+                    </div>
                 `;
-                
-                // Trigger Reprocess
-                if (window.instgrm) {
-                    window.instgrm.Embeds.process();
-                }
             } else if (type === 'video') {
-                content.innerHTML = `
-                    <video src="${videoId}" class="w-full h-full object-cover" autoplay controls playsinline></video>
-                `;
+                // MP4 Video
+                // Use aspect ratio depending on context
+                let ratio = (isGrid || type === 'grid-video') ? 'aspect-[9/16]' : 'aspect-video';
+                containerClass += ` ${ratio}`;
+                
+                content = `
+                    <video 
+                        src="${videoId}" 
+                        poster="${poster}" 
+                        class="w-full h-full object-cover" 
+                        controls 
+                        playsinline
+                        onplay="handleVideoPlay(this)">
+                    </video>`;
             } else if (type === 'facebook') {
-                 content.innerHTML = `
+                containerClass += " aspect-video";
+                content = `
                     <iframe 
-                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D293221814714542&show_text=false&t=0&autoplay=1" 
-                        width="100%" 
-                        height="100%" 
+                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D293221814714542&show_text=false&t=0" 
+                        class="w-full h-full absolute top-0 left-0"
                         style="border:none;overflow:hidden" 
                         scrolling="no" 
                         frameborder="0" 
@@ -979,6 +893,15 @@
                         allowFullScreen="true">
                     </iframe>`;
             }
+
+            return `
+                <div class="mb-8 break-inside-avoid">
+                    <div class="${containerClass}" style="${containerStyle}">
+                        ${content}
+                    </div>
+                    ${caption ? `<p class="mt-3 text-center text-sm text-gray-500 italic">${caption}</p>` : ''}
+                </div>
+            `;
         }
 
         // --- Portfolio Data Source ---
@@ -1049,14 +972,12 @@
                                         {
                                             type: 'instagram',
                                             id: 'DL9jnzco5-o',
-                                            caption: 'Reel 1',
-                                            poster: 'https://i.postimg.cc/VNgZrdv6/AI-1.png'
+                                            caption: 'Reel 1'
                                         },
                                         {
                                             type: 'instagram',
-                                            id: 'DLPYKxVvzB1',
-                                            caption: 'Reel 2',
-                                            poster: 'https://i.postimg.cc/PxF6y910/AI-2.png'
+                                            id: 'DLell1ZpQM1',
+                                            caption: 'Reel 2'
                                         }
                                     ]
                                 }
@@ -1082,14 +1003,12 @@
                                         {
                                             type: 'instagram',
                                             id: 'DLpJvaUpHPP', // Updated IG Reel ID
-                                            caption: 'Fashion Reel',
-                                            poster: 'https://i.postimg.cc/66HVPqMd/CL-2.png'
+                                            caption: 'Fashion Reel'
                                         },
                                         {
                                             type: 'instagram',
                                             id: 'DLWvStNyE_t', // Updated IG Reel ID
-                                            caption: 'Lifestyle Reel',
-                                            poster: 'https://i.postimg.cc/50g5b2bb/CL-1.png'
+                                            caption: 'Lifestyle Reel'
                                         }
                                     ]
                                 }
@@ -1114,14 +1033,12 @@
                                         {
                                             type: 'instagram',
                                             id: 'DNS9yEgyrCL', 
-                                            caption: 'FaceFusion Demo 1',
-                                            poster: 'https://i.postimg.cc/0Nq2H5gn/516437363-17851064073495702-7272645245680851626-n.jpg'
+                                            caption: 'FaceFusion Demo 1'
                                         },
                                         {
                                             type: 'instagram',
                                             id: 'DM7yV7UBnKX', 
-                                            caption: 'FaceFusion Demo 2',
-                                            poster: 'https://i.postimg.cc/0Nq2H5gn/516437363-17851064073495702-7272645245680851626-n.jpg'
+                                            caption: 'FaceFusion Demo 2'
                                         }
                                     ]
                                 }
@@ -1146,15 +1063,13 @@
                                         {
                                             type: 'instagram',
                                             id: 'DOIvxgPkpzh', // Reel ID
-                                            caption: 'SORA Generated Video',
-                                            poster: 'https://i.postimg.cc/d1gW8VSk/Gemini-Generated-Image-ij8cabij8cabij8c.png'
+                                            caption: 'SORA Generated Video'
                                         },
                                         {
                                             type: 'instagram',
                                             id: 'DOFatavkv9T', // Post ID
                                             isPost: true, // Special flag for Post vs Reel
-                                            caption: 'Process & Concept',
-                                            poster: 'https://i.postimg.cc/wTgM9cwg/ying-mu-jie-tu-2026-01-20-xia-wu4-47-56.png'
+                                            caption: 'Process & Concept'
                                         }
                                     ]
                                 }
@@ -1181,8 +1096,7 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'LuSPneV1k90', // Updated YouTube ID
-                                    caption: 'Hailstone Labs Brand Showreel',
-                                    poster: 'https://i.postimg.cc/FKzmKrwf/Hailstone-Lab-Website-R3-(2)-outlined.png'
+                                    caption: 'Hailstone Labs Brand Showreel' 
                                 },
                                 { type: 'image', src: 'https://i.postimg.cc/jjjKjHL6/David-Portfolio-2023.jpg', caption: 'Official Website Design - Showcasing "Identify, Invent, Incubate" Core Values' },
                                 { type: 'image', src: 'https://i.postimg.cc/B6t7Wqpd/HS-2.jpg', caption: 'Social Media & AMA - Online Event Promotional Visuals for Various Web3 Topics' },
@@ -1222,14 +1136,12 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'PmOFx19bCjM', // Updated YouTube ID
-                                    caption: 'Convergent Brand Teaser',
-                                    poster: 'https://i.postimg.cc/fbQ52cST/CVG-1.jpg'
+                                    caption: 'Convergent Brand Teaser' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: '9PDZ0hT6SI0', // Updated YouTube ID
-                                    caption: 'Platform Demo & Walkthrough',
-                                    poster: 'https://i.postimg.cc/fbQ52cST/CVG-1.jpg'
+                                    caption: 'Platform Demo & Walkthrough' 
                                 }
                             ]
                         }
@@ -1270,14 +1182,12 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'KE0rG9k_qTg', // Updated Video 1
-                                    caption: 'Cross-chain Explainer Video',
-                                    poster: 'https://i.postimg.cc/N0rFMXdm/WB-1.jpg'
+                                    caption: 'Cross-chain Explainer Video' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: '-G1bgKm8OVM', // Updated to new ID
-                                    caption: 'Why lock WOM? Tutorial Animation',
-                                    poster: 'https://i.postimg.cc/N0rFMXdm/WB-1.jpg'
+                                    caption: 'Why lock WOM? Tutorial Animation' // Updated Caption
                                 }
                             ]
                         }
@@ -1296,8 +1206,7 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'QFvXL21rAA0', // Updated Video
-                                    caption: 'Online Shipping Tutorial Video',
-                                    poster: 'https://i.postimg.cc/h4YJ2kSg/FD-1.jpg'
+                                    caption: 'Online Shipping Tutorial Video' 
                                 }
                             ]
                         }
@@ -1316,14 +1225,12 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'B_JggsVwNns', // Updated Video 1
-                                    caption: 'Insurance Claim Process - Animation 1',
-                                    poster: 'https://i.postimg.cc/ZqPKZgk1/cigna-1.jpg'
+                                    caption: 'Insurance Claim Process - Animation 1' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: 'a7zRCi5hWrA', // Updated Video 2
-                                    caption: 'Healthcare Explained - Animation 2',
-                                    poster: 'https://i.postimg.cc/ZqPKZgk1/cigna-1.jpg'
+                                    caption: 'Healthcare Explained - Animation 2' 
                                 },
                                 { 
                                     type: 'image', 
@@ -1486,14 +1393,12 @@
                                 { 
                                     type: 'youtube', 
                                     id: 'iIIhLIxH0y4', // Updated Video 1
-                                    caption: 'YouTube Channel Content 1',
-                                    poster: 'https://i.postimg.cc/zB101vmj/0419de6fbb039926307559315e9a846198a4c93f.png'
+                                    caption: 'YouTube Channel Content 1' 
                                 },
                                 { 
                                     type: 'youtube', 
                                     id: 'hoKzqTbEWTQ', // Added Video 2
-                                    caption: 'YouTube Channel Content 2',
-                                    poster: 'https://i.postimg.cc/zB101vmj/0419de6fbb039926307559315e9a846198a4c93f.png'
+                                    caption: 'YouTube Channel Content 2' 
                                 }
                             ]
                         }
@@ -1510,15 +1415,13 @@
                             services: ["Interview Shooting", "Storytelling"],
                             gallery: [
                                 { 
-                                    type: 'video', 
-                                    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', 
-                                    poster: 'https://i.postimg.cc/65CPHNd4/kmb-1.jpg', 
+                                    type: 'youtube', 
+                                    id: 'VSSqRXdZM90', 
                                     caption: 'KMB Campaign Video 1 - Bus Fan Interview' 
                                 },
                                 { 
-                                    type: 'video', 
-                                    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', 
-                                    poster: 'https://i.postimg.cc/vBpPzPT7/kmb-2.jpg', 
+                                    type: 'youtube', 
+                                    id: '1Bif5LYnpP0', 
                                     caption: 'KMB Campaign Video 2 - Monopoly Challenge' 
                                 },
                                 { 
@@ -1675,10 +1578,10 @@
             galleryContainer.innerHTML = project.details.gallery.map(item => {
                 // Wrapper for single items
                 if (['video', 'youtube', 'facebook'].includes(item.type)) {
-                    return createPlayerWrapper(item);
+                    return createPlayerHtml(item);
                 } else if (item.type === 'grid-video') {
                     // Grid Video (Vertical 9:16)
-                    const videosHtml = item.videos.map(video => createPlayerWrapper(video, true)).join('');
+                    const videosHtml = item.videos.map(video => createPlayerHtml(video, true)).join('');
                     
                     return `
                         <div class="gallery-item grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1712,6 +1615,11 @@
 
             // Show Modal
             modal.classList.add('active');
+            
+            // CRITICAL: Trigger Instagram Embed Process after content injection
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
         }
 
         function closeProjectDetail() {
