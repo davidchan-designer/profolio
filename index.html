@@ -856,12 +856,13 @@
                     </iframe>`;
             } else if (type === 'instagram') {
                 // Instagram: Allow auto height (no fixed aspect ratio class)
+                // Use background transparent to blend better
                 containerClass = "w-full relative rounded-xl overflow-hidden bg-transparent"; 
                 const embedUrl = isPost 
                     ? `https://www.instagram.com/p/${videoId}/` 
                     : `https://www.instagram.com/reel/${videoId}/`;
                 
-                // Using standard IG Blockquote for auto-height
+                // Using standard IG Blockquote for auto-height, modified style
                 content = `
                     <div class="flex justify-center w-full">
                         <blockquote class="instagram-media" 
@@ -918,42 +919,42 @@
                     { 
                         name: 'Midjourney', 
                         desc: 'Rapidly generate high-quality concept art to unlock infinite visual inspiration.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 0 1 5 5c0 .7-.1 1.4-.3 2l-1.3 4H10l-1.3-4c-.2-.6-.3-1.3-.3-2a5 5 0 0 1 3.4-4.6M4 22h16v-2H4v2m2-4h12v-2H6v2"></path>' // Paintbrush
                     },
                     { 
                         name: 'Freepik AI Suite', 
                         desc: 'Accelerate asset search and vector generation for boosted design efficiency.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>' // Search
                     },
                     { 
                         name: 'HeyGen', 
                         desc: 'Create realistic AI avatar videos, breaking language and filming barriers.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>' // Video
                     },
                     { 
                         name: 'Gemini', 
                         desc: 'Leverage multimodal AI for advanced reasoning and creative content generation.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>' // Sparkles/Star (Gemini style)
                     },
                     { 
                         name: 'Canva', 
                         desc: 'Combine AI-assisted layouts to produce social media assets at lightning speed.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' // Layout Grid
                     },
                     { 
                         name: 'ComfyUI', 
                         desc: 'Node-based workflow for precise control over every pixel of the generation process.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6h6m-6 6h6m-6 6h6 M5 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-14 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>' // Nodes
                     },
                     { 
                         name: 'FaceFusion3', 
                         desc: 'High-precision video face-swapping technology for creative character replacement.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>' // Swap
                     },
                     { 
                         name: 'Stable Diffusion', 
                         desc: 'Locally deploy powerful models to achieve unlimited stylistic exploration.',
-                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>'
+                        icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>' // Chip
                     },
                 ],
                 projects: [
@@ -962,7 +963,7 @@
                         role: 'AI Creator',
                         client: 'Personal Project',
                         desc: 'AI-generated virtual food blogger character, exploring AI applications in food photography and character setting.',
-                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', 
+                        img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', // Updated Cover
                         tags: ['@hungry_ai_ryan', 'Midjourney'],
                         details: {
                             longDesc: "Your AI lab rat 🧪\nTesting tools. Breaking myths. Sharing gems.\n📍Helping you think smarter with AI",
@@ -995,27 +996,27 @@
                         title: 'Catherine Lim',
                         role: 'AI Creator',
                         client: 'Personal Project',
-                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', 
-                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', 
+                        desc: 'Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.', // Updated short desc
+                        img: 'https://i.postimg.cc/66HVPqMd/CL-2.png', // Updated Cover
                         tags: ['@cat_fit_lim', 'Stable Diffusion'],
                         details: {
-                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", 
+                            longDesc: "Catherine Lim represents a new era of digital storytelling. It uses advanced AI to create an indistinguishable-from-reality digital human designed to produce engaging social content.", // Updated long desc
                             services: ["Realistic Rendering", "Fashion AI", "Lifestyle Photography"],
                             gallery: [
-                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, 
+                                { type: 'image', src: 'https://i.postimg.cc/50g5b2bb/CL-1.png', caption: 'Digital Human - High fidelity AI portraiture' }, // Updated Image
                                 // Added 2x1 Vertical Video Grid (Instagram Reels)
                                 {
                                     type: 'grid-video',
                                     videos: [
                                         {
-                                            type: 'youtube', 
-                                            id: 'TaFP-4BVCMs', 
+                                            type: 'youtube', // Specify subtype
+                                            id: 'TaFP-4BVCMs', // YouTube Shorts ID 1
                                             caption: 'Fashion Reel',
                                             orientation: 'portrait'
                                         },
                                         {
-                                            type: 'youtube', 
-                                            id: 'QyzUQpqLfyk', 
+                                            type: 'youtube', // Specify subtype
+                                            id: 'QyzUQpqLfyk', // YouTube Shorts ID 2
                                             caption: 'Lifestyle Reel',
                                             orientation: 'portrait'
                                         }
@@ -1540,104 +1541,6 @@
             });
 
             // Open Modal
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCategory() {
-            const modal = document.getElementById('categoryModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // --- Project Detail Logic (New Level) ---
-        function openProjectDetail(category, index) {
-            const project = portfolioData[category].projects[index];
-            const modal = document.getElementById('projectDetailModal');
-            
-            // Populate Data
-            document.getElementById('projectTitle').textContent = project.title;
-            document.getElementById('projectLongDesc').textContent = project.details.longDesc;
-            document.getElementById('projectRole').textContent = project.role;
-            document.getElementById('projectClient').textContent = project.client;
-            
-            // Hero Image
-            const heroImg = document.querySelector('#projectHero img');
-            heroImg.src = project.img;
-
-            // Tags (Updated logic for IG links)
-            const tagsContainer = document.getElementById('projectTags');
-            tagsContainer.innerHTML = project.tags.map(tag => {
-                if (tag === '@hungry_ai_ryan') {
-                    return `<a href="https://www.instagram.com/hungry_ai_ryan/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                @hungry_ai_ryan
-                            </a>`;
-                } else if (tag === '@cat_fit_lim') {
-                    return `<a href="https://www.instagram.com/cat_fit_lim/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                @cat_fit_lim
-                            </a>`;
-                } else if (tag === '@retard.screams') {
-                    return `<a href="https://www.instagram.com/retard.screams/reels/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                @retard.screams
-                            </a>`;
-                } else if (tag === '@69keungho') {
-                    return `<a href="https://www.instagram.com/69keungho/" target="_blank" class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-bold text-white hover:opacity-90 transition flex items-center gap-1">
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                @69keungho
-                            </a>`;
-                } else {
-                    return `<span class="px-3 py-1 bg-white/10 rounded-full text-xs font-medium">${tag}</span>`;
-                }
-            }).join('');
-
-            // Services
-            const servicesContainer = document.getElementById('projectServices');
-            servicesContainer.innerHTML = project.details.services.map(s => `<li>${s}</li>`).join('');
-
-            // Gallery (Updated to handle Video and Grid Video with ROBUST aspect ratio)
-            const galleryContainer = document.getElementById('projectGallery');
-            galleryContainer.innerHTML = project.details.gallery.map(item => {
-                // Wrapper for single items
-                if (['video', 'youtube', 'facebook', 'instagram'].includes(item.type)) {
-                    return createPlayerHtml(item);
-                } else if (item.type === 'grid-video') {
-                    // Grid Video (Vertical 9:16)
-                    const videosHtml = item.videos.map(video => createPlayerHtml(video, true)).join('');
-                    
-                    return `
-                        <div class="gallery-item grid grid-cols-1 md:grid-cols-2 gap-4">
-                            ${videosHtml}
-                        </div>
-                    `;
-                } else if (item.type === 'link-card') {
-                    // Link Card (16:9)
-                    return `
-                        <a href="${item.url}" target="_blank" class="block gallery-item group relative w-full bg-black rounded-xl overflow-hidden cursor-pointer" style="padding-bottom: 56.25%;">
-                            <img src="${item.poster}" alt="${item.caption}" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
-                                <div class="play-btn mb-2">
-                                    <!-- X (Twitter) Icon -->
-                                    <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                                </div>
-                                <span class="text-white font-bold text-sm uppercase tracking-widest">Watch on X</span>
-                            </div>
-                            <p class="absolute bottom-[-30px] w-full text-center mt-2 text-sm text-gray-500 italic">${item.caption}</p>
-                        </a>
-                    `;
-                } else {
-                    return `
-                        <div class="gallery-item">
-                            <img src="${item.src}" alt="${item.caption}">
-                            <p class="mt-2 text-sm text-gray-500 italic">${item.caption}</p>
-                        </div>
-                    `;
-                }
-            }).join('');
-
-            // Show Modal
             modal.classList.add('active');
             
             // CRITICAL: Trigger Instagram Embed Process after content injection
