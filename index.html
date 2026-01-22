@@ -240,8 +240,12 @@
             padding: 0;
         }
         
+        /* KEY FIX: Use transform: none instead of translateY(0).
+           This allows 'position: fixed' children (like the back button) 
+           to relate to the viewport, not the modal container.
+        */
         .category-modal.active {
-            transform: translateY(0);
+            transform: none;
         }
 
         .modal-container {
@@ -270,8 +274,9 @@
             transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
+        /* KEY FIX: Use transform: none here as well */
         .project-modal.active {
-            transform: translateX(0);
+            transform: none;
         }
 
         .project-hero {
@@ -289,10 +294,11 @@
             padding: 0 2rem 4rem;
         }
 
+        /* Close Button Styling - Ensure high z-index and fixed position */
         .close-btn {
             position: fixed;
             top: 2rem;
-            left: 2rem; /* Changed to left */
+            left: 2rem;
             z-index: 310;
             cursor: none;
             mix-blend-mode: difference;
@@ -675,9 +681,10 @@
 
     <!-- Full Screen Category Modal (Level 2: Project List) -->
     <div id="categoryModal" class="category-modal">
+        <!-- Sticky Header Background -->
         <div class="fixed top-0 left-0 w-full h-24 bg-gradient-to-b from-black via-black/80 to-transparent z-40 pointer-events-none"></div>
         
-        <!-- Back Button Style for Close (Left Aligned) -->
+        <!-- Back Button (Fixed) -->
         <button onclick="closeCategory()" class="close-btn hover-trigger group flex items-center gap-2">
             <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-yellow-400 group-hover:scale-110 transition bg-black/50 backdrop-blur-md">
                 <svg class="w-5 h-5 text-white group-hover:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -714,6 +721,7 @@
 
     <!-- Project Detail Modal (Level 3: Specific Project View) -->
     <div id="projectDetailModal" class="project-modal">
+         <!-- Back Button (Fixed) -->
         <button onclick="closeProjectDetail()" class="back-btn hover-trigger group flex items-center gap-2">
              <div class="w-12 h-12 rounded-full border border-white/50 flex items-center justify-center group-hover:scale-110 transition bg-black/50 backdrop-blur-md">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
