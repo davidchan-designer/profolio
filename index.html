@@ -240,10 +240,7 @@
             padding: 0;
         }
         
-        /* KEY FIX: Use transform: none instead of translateY(0).
-           This allows 'position: fixed' children (like the back button) 
-           to relate to the viewport, not the modal container.
-        */
+        /* Fixed: Use transform: none to allow fixed children */
         .category-modal.active {
             transform: none;
         }
@@ -274,7 +271,7 @@
             transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        /* KEY FIX: Use transform: none here as well */
+        /* Fixed: Use transform: none here as well */
         .project-modal.active {
             transform: none;
         }
@@ -969,10 +966,12 @@
                         title: 'Hungry Ryan',
                         role: 'AI Creator',
                         client: 'Personal Project',
-                        desc: 'AI-generated virtual food blogger character, exploring AI applications in food photography and character setting.',
+                        // Updated Short Description with HTML breaks for card view
+                        desc: 'Your AI lab rat 🧪<br>Testing tools. Breaking myths. Sharing gems.<br>📍Helping you think smarter with AI',
                         img: 'https://i.postimg.cc/VNgZrdv6/AI-1.png', // Updated Cover
                         tags: ['@hungry_ai_ryan', 'Midjourney'],
                         details: {
+                            // Updated Long Description (matches request, uses newlines for innerText)
                             longDesc: "Your AI lab rat 🧪\nTesting tools. Breaking myths. Sharing gems.\n📍Helping you think smarter with AI",
                             services: ["Character Consistency", "AI Food Photography", "Social Media Content"],
                             gallery: [
