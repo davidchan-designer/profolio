@@ -1,0 +1,32 @@
+/* One focal sequence: the name settles, then the film opens into view. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.24s}
+::view-transition-group(solo-cover){animation-duration:.65s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+.lead .project-art img,.film-poster img{view-transition-name:solo-cover}
+.name{perspective:1000px;overflow:clip;padding-top:.08em;margin-top:-.08em}
+.name .name-word{display:inline-block;white-space:nowrap;transform-origin:50% 100%;transform-style:preserve-3d}
+.name .name-letter{display:inline-block;backface-visibility:hidden;transform-origin:50% 100%}
+.motion-enabled .name{transform:translate3d(0,var(--name-y,0px),0);opacity:var(--name-opacity,1)}
+.motion-enabled .name .name-word{transform:rotateX(var(--name-angle,0deg))}
+.motion-enabled .lead .project-art{background:transparent}
+.motion-enabled .lead .project-art img{clip-path:inset(var(--aperture,0%) var(--aperture,0%) 0)}
+.motion-enabled .lead .project-art img{transform:scale(var(--film-scale,1));transition:none}
+.motion-enabled .wide .project-art img{transform:scale(1.08) translate3d(0,var(--landscape-y,0px),0);transition:none}
+.motion-enabled .film-poster img{clip-path:inset(0 var(--case-inset,0%));transform:translate3d(0,var(--case-y,0px),0)}
+.roll-label{display:inline-grid;overflow:hidden;line-height:1.4;position:relative;vertical-align:middle}
+.roll-label>span{grid-area:1/1;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.roll-label>span:last-child{transform:translateY(115%)}
+.motion-enabled a:hover .roll-label>span:first-child,.motion-enabled a:focus-visible .roll-label>span:first-child{transform:translateY(-115%)}
+.motion-enabled a:hover .roll-label>span:last-child,.motion-enabled a:focus-visible .roll-label>span:last-child{transform:translateY(0)}
+.motion-toggle{border:0;background:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:88px;min-height:44px;font-size:12px;padding:8px 0;cursor:pointer}
+.motion-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}.motion-toggle:disabled{cursor:default;opacity:.7}.motion-controls{display:flex;align-items:center;gap:24px;justify-content:flex-end}
+@media(max-width:800px){.navigation .motion-controls{grid-column:2;grid-row:1;gap:12px;flex-wrap:wrap;justify-content:flex-end}.navigation .motion-controls .compare{grid-column:auto;grid-row:auto}.motion-controls .motion-toggle{min-width:80px}.navigation nav{grid-row:2}}
+@media(max-width:540px){.name .name-word{display:block}.name .name-letter{display:inline-block}.navigation .motion-controls{gap:0;flex-direction:column;align-items:flex-end}.motion-toggle{font-size:12px;min-height:44px}.case-nav{flex-wrap:wrap}.case-nav .motion-toggle{margin-left:auto}.motion-enabled .name{opacity:1}.motion-enabled .wide .project-art img{transform:none}.motion-enabled .lead .project-art img{clip-path:none}.motion-enabled .lead .project-art img{transform:none}.motion-enabled .film-poster img{clip-path:none;transform:none}}
+@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.roll-label>span{transition:none}.motion-enabled .name,.motion-enabled .name .name-word,.motion-enabled .project-art img,.motion-enabled .film-player{transform:none!important;opacity:1!important;clip-path:none!important}}
+html.motion-paused{scroll-behavior:auto}
+html.motion-paused::view-transition-group(*),html.motion-paused::view-transition-old(*),html.motion-paused::view-transition-new(*){animation:none!important}
+
+html.motion-paused .project-art:hover img{transform:none}html.motion-paused .project-art img,html.motion-paused .portrait img{transition:none}
+/* Keep page copy still during navigation; only the shared cover travels. */
+::view-transition-old(root){animation:none;opacity:0}
+::view-transition-new(root){animation:none;opacity:1}

@@ -1,0 +1,7 @@
+(()=>{'use strict';
+const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const list=document.querySelector('#archive-list');
+if(list){const selected=['solomission','pingbusiness','evol','convergent'];const leads=['wombat-exchange','znooz','hailstone-labs','catherine-lim','hungry-ryan'];const projects=Object.entries(window.PORTFOLIO_DATA||{}).flatMap(([category,data])=>data.projects.filter(p=>!p.hidden).map(p=>({...p,id:slug(p.title),category:data.title}))).filter(p=>!selected.includes(p.id));projects.sort((a,b)=>(leads.includes(a.id)?leads.indexOf(a.id):99)-(leads.includes(b.id)?leads.indexOf(b.id):99));list.innerHTML=projects.map(p=>`<a class="archive-item" href="../index.html#project/${p.id}"><img src="../${escape(p.img)}" alt="" width="56" height="44" loading="lazy"><span><strong>${escape(p.title)}</strong><small>${escape(p.category)}</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>`).join('');}
+const film=document.querySelector('.film-poster');if(film)film.addEventListener('click',()=>{const iframe=document.createElement('iframe');iframe.src='https://www.youtube-nocookie.com/embed/fjUrAx-5G7g?autoplay=1&rel=0';iframe.title='SoloMission short film';iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';iframe.allowFullscreen=true;film.replaceWith(iframe);iframe.focus();});
+})();
