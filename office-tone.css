@@ -1,0 +1,29 @@
+/* The office shares the site palette. Colour inside artwork belongs to each project. */
+:root{--office-surface:var(--color-panel);--office-screen:var(--color-paper);--office-line:var(--color-rule);--office-focus:var(--color-accent);--office-paper:var(--color-ink);--office-ink:var(--color-deep);--office-david:#b8d3c6;--office-byte:#8caeb9;--office-hue:#b7b9ad;--office-frame:#c2c9c4;--office-loop:#91a99d;--office-echo:#b5abb8}
+.office-shell{background:var(--color-paper);border-color:var(--color-rule)}
+.office-topbar{background:var(--color-paper);color:var(--color-muted);border-color:var(--color-rule);padding:14px 18px;letter-spacing:.03em}
+.office-map-column{background:var(--color-paper)}
+.office-inspector{background:var(--color-panel);border-color:var(--color-rule)}
+.office-profile canvas{background:var(--color-paper)}
+.office-profile #office-agent-role{color:var(--color-accent)}
+.office-project{border-color:var(--color-rule)}
+.office-project small,.office-small-label{color:var(--color-muted)}
+.office-project img{border:1px solid var(--color-rule)}
+.office-bottom{background:var(--color-paper);border-color:var(--color-rule)}
+.office-teammate[aria-pressed="true"]{color:var(--color-accent);border-color:var(--color-accent)}
+.office-pin>span{background:var(--color-paper);color:var(--color-ink);border:1px solid var(--color-rule);font:500 11px/1.3 var(--font-body);letter-spacing:.02em;padding:3px 6px}
+.office-pin[aria-pressed="true"]>span{background:var(--color-accent);color:var(--color-deep);border-color:var(--color-accent)}
+.office-pin[aria-pressed="true"]::after{border-color:var(--color-accent)}
+.office-bubble{background:var(--color-ink);color:var(--color-deep);border-color:var(--color-ink);box-shadow:none;font-family:var(--font-body);font-size:13px}
+.office-bubble::after{border-top-color:var(--color-ink)}
+@media(max-width:40rem){.office-topbar{padding:12px;gap:8px}.office-pin>span{font-size:11px;padding:2px 4px}.office-inspector{padding:18px 14px}.office-bubble{font-size:12px}}
+.office-section{max-width:1352px}
+/* Keep the real project names readable in the compact inspector. */
+.office-project strong{white-space:normal;overflow:visible;text-overflow:clip;font-size:13px;line-height:1.4}
+.office-project small{display:block;font-size:12px;line-height:1.5;margin-top:3px}
+@media(max-width:40rem){
+ #office-projects{grid-template-columns:minmax(0,1fr);gap:12px}
+ .office-project{align-items:center;gap:12px;min-height:48px}
+ .office-project img{width:52px;height:40px}
+ .office-project>b{display:block}
+}
